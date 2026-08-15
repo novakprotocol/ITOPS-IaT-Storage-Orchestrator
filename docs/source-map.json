@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "engine": "iatdocs",
+  "engine_version": "0.08.2",
+  "build_id": "52e2ba277d479cb4249f",
+  "content": [
+    {
+      "path": "content/index.md",
+      "sha256": "299043ce2c0590f26606d1d5da12a492b76d39c95cedd6fd7e7b2f09a43c8b0d",
+      "headings": [
+        {
+          "level": 2,
+          "text": "1. Control Center First",
+          "anchor": "1-control-center-first",
+          "source": "content/index.md"
+        },
+        {
+          "level": 2,
+          "text": "2. Why the Split Exists",
+          "anchor": "2-why-the-split-exists",
+          "source": "content/index.md"
+        },
+        {
+          "level": 2,
+          "text": "3. Repository Responsibilities",
+          "anchor": "3-repository-responsibilities",
+          "source": "content/index.md"
+        },
+        {
+          "level": 2,
+          "text": "4. Operations Console Pattern",
+          "anchor": "4-operations-console-pattern",
+          "source": "content/index.md"
+        },
+        {
+          "level": 2,
+          "text": "5. Enable and Disable Boundary",
+          "anchor": "5-enable-and-disable-boundary",
+          "source": "content/index.md"
+        },
+        {
+          "level": 2,
+          "text": "6. Private Control Repository Layout",
+          "anchor": "6-private-control-repository-layout",
+          "source": "content/index.md"
+        },
+        {
+          "level": 2,
+          "text": "7. Python-Only Implementation Rule",
+          "anchor": "7-python-only-implementation-rule",
+          "source": "content/index.md"
+        },
+        {
+          "level": 2,
+          "text": "8. Ansible Relationship",
+          "anchor": "8-ansible-relationship",
+          "source": "content/index.md"
+        },
+        {
+          "level": 2,
+          "text": "9. Approval and SHA Evidence",
+          "anchor": "9-approval-and-sha-evidence",
+          "source": "content/index.md"
+        },
+        {
+          "level": 2,
+          "text": "10. Next Implementation Gates",
+          "anchor": "10-next-implementation-gates",
+          "source": "content/index.md"
+        }
+      ]
+    }
+  ]
+}

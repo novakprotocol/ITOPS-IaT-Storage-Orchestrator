@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="{{ site.language | e }}" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ doc.summary | e }}">
+  <meta name="manual-build-id" content="{{ build_id | e }}">
+  <meta name="generator" content="2210Docs {{ engine_version | e }}">
+  <title>{{ doc.title | e }} — {{ doc.document_type | e }} {{ doc.version | e }}</title>
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('controlled-manual-theme');
+        var preferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = saved || preferred;
+      } catch (error) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    }());
+  </script>
+  <link rel="stylesheet" href="{{ asset_prefix | e }}assets/css/manual.css">
+</head>
+<body
+  data-document-key="{{ document_key | e }}"
+  data-document-id="{{ doc.document_id | e }}"
+  data-document-version="{{ doc.version | e }}"
+  data-template-version="{{ doc.template_version | e }}"
+  data-engine-version="{{ engine_version | e }}"
+  data-build-id="{{ build_id | e }}"
+  data-update-endpoint="{{ asset_prefix | e }}site-version.json"
+  data-bookmark-limit="{{ reader.bookmark_limit }}"
+  data-update-check-seconds="{{ reader.update_check_seconds }}"
+>
+  <a class="skip-link" href="#manualContent">Skip to document content</a>
+
+  <header class="topbar" aria-label="Document controls">
+    <div class="repo-facts" title="{{ repo_tooltip | e }}">
+      <span>GHE repo size: <strong>{{ repo.size_display | default('Pending sync') | e }}</strong></span>
+      <span>Last review: <strong>{{ doc.last_review_date | default('Not recorded') | e }}</strong></span>
+      <span>Review due: <strong>{{ doc.review_date | default('Not recorded') | e }}</strong></span>
+    </div>
+    <div class="brand" title="{{ doc.title | e }}">{{ doc.title | e }}</div>
+    <div class="spacer"></div>
+    <a class="optional" href="#document-intelligence">History</a>
+    <details id="editMenu" class="edit-menu">
+      <summary>Edit</summary>
+      <div class="edit-menu-panel" role="menu" aria-label="Repository edit links">
+        {% if edit_content_url %}
+          <a id="editSourceLink" role="menuitem" href="{{ edit_content_url | e }}" target="_blank" rel="noopener">Edit document</a>
+          <a id="editControlLink" role="menuitem" href="{{ edit_control_url | e }}" target="_blank" rel="noopener">Edit document control</a>
+          <a id="editRevisionsLink" role="menuitem" href="{{ edit_revisions_url | e }}" target="_blank" rel="noopener">Edit revision history</a>
+        {% else %}
+          <a id="editSourceLink" role="menuitem" href="#editing-workflow">How editing works</a>
+        {% endif %}
+      </div>
+    </details>
+    <button id="readingButton" class="reading-primary" type="button" title="Open the first numbered document section">Read section 1</button>
+    <div id="bookmarkControl" class="bookmark-control">
+      <button id="quickBookmarkButton" class="bookmark-save-button" type="button" title="Save an additional bookmark at the current reading position; use the manager to add or edit a ticket reference and note">
+        <span>Bookmark</span><strong id="bookmarkPercent">0%</strong>
+      </button>
+      <details id="bookmarkMenu" class="bookmark-menu">
+        <summary aria-label="Manage reading progress and bookmarks" title="Manage reading progress and bookmarks">▾</summary>
+        <div class="bookmark-menu-panel" role="dialog" aria-label="Reading progress and bookmarks">
+          <section class="bookmark-progress-card" aria-label="Automatic reading progress">
+            <span class="panel-label">Automatic reading progress</span>
+            <strong id="bookmarkProgressStatus">Not started</strong>
+            <small id="bookmarkProgressDetail">Progress moves forward automatically as the reader advances through the document.</small>
+          </section>
+          <div class="bookmark-create-form" aria-label="Create bookmark">
+            <label class="bookmark-name-label" for="bookmarkName">Bookmark label <span>optional</span></label>
+            <input id="bookmarkName" class="bookmark-name-input" type="text" maxlength="80" placeholder="Example: Recheck validation evidence" autocomplete="off">
+            <label class="bookmark-name-label" for="bookmarkReference">Ticket / controlled-record reference <span>optional</span></label>
+            <input id="bookmarkReference" class="bookmark-reference-input" type="text" maxlength="120" placeholder="Example: CHG0123456, INC0098765, TASK-42, or PR #18" autocomplete="off">
+            <label class="bookmark-name-label" for="bookmarkNote">Bookmark note <span>optional</span></label>
+            <textarea id="bookmarkNote" class="bookmark-note-input" maxlength="280" rows="2" placeholder="Why this location matters or what must be revisited"></textarea>
+            <button id="saveNamedBookmarkButton" class="save-named-bookmark" type="button">Save bookmark at current position</button>
+          </div>
+          <div class="bookmark-list-heading"><strong>Saved bookmarks</strong><span><b id="bookmarkCount">0</b> / {{ reader.bookmark_limit }}</span></div>
+          <div id="bookmarkList" class="bookmark-list"><p class="bookmark-empty">No additional bookmarks saved.</p></div>
+          <button id="clearReadingDataButton" class="clear-reading-data" type="button">Clear reading data</button>
+        </div>
+      </details>
+    </div>
+    <button id="navToggle" class="mobile-only" type="button" aria-controls="docnav" aria-expanded="false">Contents</button>
+    <button id="themeButton" type="button"><span data-theme-label>Dark</span><span class="theme-suffix"> theme</span></button>
+  </header>
+
+  <div id="progressLine" class="progress-line" aria-hidden="true"></div>
+  <button id="returnMarker" class="bookmark-return-marker" type="button" hidden aria-label="Return to the furthest-read point">
+    <span>Return to furthest read</span><strong id="returnMarkerPercent">0%</strong>
+  </button>
+
+  <aside id="updateNotice" class="update-notice" role="status" aria-live="polite" hidden>
+    <div>
+      <strong id="updateNoticeTitle">Update available — refresh your browser</strong>
+      <span id="updateNoticeText">A newer published build is available. Refresh your browser to read the current source.</span>
+    </div>
+    <div class="update-actions">
+      <button id="refreshUpdateButton" type="button">Refresh browser</button>
+      <button id="dismissUpdateButton" class="secondary" type="button">Not now</button>
+    </div>
+  </aside>
+
+  <div id="readingNotice" class="reading-notice" role="status" aria-live="polite" hidden></div>
+
+  <div class="manual-grid">
+    <aside id="docnav" class="docnav" aria-label="Document navigation">
+      <section class="truth-panel" aria-label="Authoritative source notice">
+        <strong>Live source of truth</strong>
+        <p>This page is the current controlled reading copy. Approved repository changes publish here; copied or captured versions are uncontrolled.</p>
+      </section>
+
+      <section class="reading-panel" aria-labelledby="reading-panel-title">
+        <span id="reading-panel-title" class="panel-label">Reading progress</span>
+        <strong id="readingStatus" aria-live="polite">Not started</strong>
+        <small id="readingTimestamp">Progress begins at section 1 and automatically follows the furthest point reached in this browser.</small>
+        <div class="reading-actions">
+          <button id="resumeSidebarButton" type="button" disabled>Resume furthest read</button>
+          <button id="startOverButton" type="button">Go to section 1</button>
+          <button id="openBookmarksButton" type="button">Manage bookmarks</button>
+        </div>
+        <div id="sidebarBookmarkList" class="sidebar-bookmark-list" aria-label="Saved bookmarks"></div>
+      </section>
+
+      <div class="nav-title">Document navigation</div>
+      <a class="control-link nav-special-link" href="#document-intelligence">
+        <span>History &amp; contribution</span>
+        <strong>{{ contributions.total_contributors | default(0) }} contributors</strong>
+      </a>
+      <a class="control-link nav-special-link" href="#controlled-revisions">
+        <span>Controlled revisions</span>
+        <strong>{{ revision_entries | length }} entries</strong>
+      </a>
+      <a class="control-link nav-special-link" href="#editing-workflow">
+        <span>Editing workflow</span>
+        <strong>Repository source</strong>
+      </a>
+      <label class="visually-hidden" for="tocSearch">Filter document sections</label>
+      <input id="tocSearch" type="search" placeholder="Filter sections" autocomplete="off">
+      <h2 class="toc-heading">Contents</h2>
+      <ol id="tocList" class="toc-list"></ol>
+      <noscript><p class="nav-note">The contents list requires JavaScript. The document remains readable below.</p></noscript>
+
+      <div class="nav-title status-title">Document control</div>
+      <dl class="nav-metadata">
+        <div><dt>Creator</dt><dd>{{ doc.creator.name | e }}</dd></div>
+        <div><dt>Type</dt><dd>{{ doc.document_type | e }}</dd></div>
+        <div><dt>Profile</dt><dd>{{ (doc.document_profile or doc.document_type) | e }}</dd></div>
+        <div><dt>Service / system</dt><dd>{{ (doc.service_or_system or 'Not recorded') | e }}</dd></div>
+        <div><dt>Version</dt><dd>{{ doc.version | e }}</dd></div>
+        <div><dt>Status</dt><dd>{{ doc.status | e }}</dd></div>
+        <div><dt>Visibility</dt><dd>{{ doc.visibility | e }}</dd></div>
+        <div><dt>Reviewed</dt><dd>{{ doc.last_review_date | default('Not recorded') | e }}</dd></div>
+        <div><dt>Review due</dt><dd>{{ doc.review_date | default('Not recorded') | e }}</dd></div>
+        <div><dt>Engine</dt><dd>{{ engine_version | e }}</dd></div>
+      </dl>
+    </aside>
+
+    <main class="manual-main">
+      {% include 'partials/cover.html' %}
+      {% include 'partials/operations_console.html' %}
+      {% include 'partials/editing.html' %}
+      {% include 'partials/intelligence.html' %}
+
+      <article id="manualContent" class="manual-content">
+        {{ content_html | safe }}
+      </article>
+
+      <footer>
+        <p>{{ doc.footer_text | e }}</p>
+        <p>{{ doc.document_id | e }} · {{ doc.version | e }} · 2210Docs {{ engine_version | e }}</p>
+        <p>Contribution evidence {{ contributions.source_commit | default('Not generated') | e }} · generated {{ contributions.generated_at | default('Not generated') | e }}</p>
+      </footer>
+    </main>
+  </div>
+
+  <button id="backToTop" class="backtotop" type="button" aria-label="Back to top">↑</button>
+  <script src="{{ asset_prefix | e }}assets/js/manual.js" defer></script>
+  {% if dev_reload %}
+  <script>
+    (function () {
+      var current = {{ build_id | tojson }};
+      window.setInterval(function () {
+        fetch('/__iatdocs_build_id', { cache: 'no-store' })
+          .then(function (response) { return response.ok ? response.text() : current; })
+          .then(function (next) { if (next.trim() && next.trim() !== current) window.location.reload(); })
+          .catch(function () {});
+      }, 1000);
+    }());
+  </script>
+  {% endif %}
+</body>
+</html>

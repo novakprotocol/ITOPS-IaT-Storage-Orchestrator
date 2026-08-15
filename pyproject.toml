@@ -1,0 +1,24 @@
+[project]
+name = "2210docs-engine"
+version = "0.8.1"
+description = "Python-native controlled-document compiler and GitHub Pages reader for GS-2210 artifacts"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "MarkupSafe==3.0.3",
+  "Jinja2==3.1.6",
+  "mistune==3.2.1"
+]
+authors = [
+  {name = "Document Steward"}
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Operating System :: OS Independent"
+]
+
+[tool.2210docs]
+installation_mode = "source-tree"
+source_root = "src"
+command_module = "iatdocs"

@@ -1,0 +1,1137 @@
+{
+  "schema_version": 2,
+  "template_version": "v0.08.2",
+  "module_catalog": [
+    {
+      "number": 1,
+      "title": "Template Use and Document Profile Selection"
+    },
+    {
+      "number": 2,
+      "title": "Document Identity and Control"
+    },
+    {
+      "number": 3,
+      "title": "Executive Summary, Purpose, Objectives, and Expected Outcomes"
+    },
+    {
+      "number": 4,
+      "title": "Scope, Applicability, Assumptions, Constraints, and Exclusions"
+    },
+    {
+      "number": 5,
+      "title": "Authority, Policy, References, Standards, and Compliance Crosswalk"
+    },
+    {
+      "number": 6,
+      "title": "Definitions, Acronyms, Naming, Data Classification, and Controlled Terms"
+    },
+    {
+      "number": 7,
+      "title": "Audience, Roles, Responsibilities, Qualifications, RACI, and Separation of Duties"
+    },
+    {
+      "number": 8,
+      "title": "Service, System, Product, or Process Overview"
+    },
+    {
+      "number": 9,
+      "title": "Architecture, Interfaces, Dependencies, Data Flows, and Integration Boundaries"
+    },
+    {
+      "number": 10,
+      "title": "Inventory, Configuration Baseline, Parameters, Schemas, and Approved Options"
+    },
+    {
+      "number": 11,
+      "title": "Preconditions, Prerequisites, Access, Approvals, Maintenance Window, and Readiness"
+    },
+    {
+      "number": 12,
+      "title": "Risk, Impact, Safety, Privacy, Cybersecurity, and Change Assessment"
+    },
+    {
+      "number": 13,
+      "title": "Inputs, Outputs, Artifacts, Records, and Systems of Record"
+    },
+    {
+      "number": 14,
+      "title": "Detailed Procedure, Tasks, Commands, Expected Results, and Evidence"
+    },
+    {
+      "number": 15,
+      "title": "Decision Points, Branches, Stop Conditions, Hold Points, and Escalation"
+    },
+    {
+      "number": 16,
+      "title": "Validation, Testing, Acceptance, Quality Gates, and Independent Review"
+    },
+    {
+      "number": 17,
+      "title": "Rollback, Recovery, Contingency, Failover, and Restoration"
+    },
+    {
+      "number": 18,
+      "title": "Incident, Problem, Request, Task, and Change Integration"
+    },
+    {
+      "number": 19,
+      "title": "Monitoring, Logging, Alerting, Observability, Drift, and Routine Operations"
+    },
+    {
+      "number": 20,
+      "title": "Security, Identity, Credentials, Least Privilege, Audit, and Privacy Controls"
+    },
+    {
+      "number": 21,
+      "title": "Data Handling, Records, Retention, Evidence, and Chain of Custody"
+    },
+    {
+      "number": 22,
+      "title": "Performance, Capacity, Availability, Reliability, and Service Levels"
+    },
+    {
+      "number": 23,
+      "title": "Continuity, Backup, Restore, Disaster Recovery, RTO, and RPO"
+    },
+    {
+      "number": 24,
+      "title": "Communications, Notifications, Stakeholders, and Handoffs"
+    },
+    {
+      "number": 25,
+      "title": "Training, Competency, Knowledge Transfer, Job Aids, and Exercises"
+    },
+    {
+      "number": 26,
+      "title": "Exceptions, Deviations, Waivers, Emergency Use, and Compensating Controls"
+    },
+    {
+      "number": 27,
+      "title": "Troubleshooting, Known Errors, Decision Matrix, and Frequently Asked Questions"
+    },
+    {
+      "number": 28,
+      "title": "Technician, Reviewer, and Closeout Checklists"
+    },
+    {
+      "number": 29,
+      "title": "Metrics, Outcomes, Contribution Evidence, and Work Ledger Integration"
+    },
+    {
+      "number": 30,
+      "title": "Review, Recertification, Lifecycle, Supersession, Retirement, and Decommission"
+    },
+    {
+      "number": 31,
+      "title": "Appendices, Attachments, Diagrams, Forms, Samples, and Sanitized Examples"
+    },
+    {
+      "number": 32,
+      "title": "Release Gates, Concurrence, Approval, and Control Assurance"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "comprehensive-2210",
+      "name": "Comprehensive 2210 Controlled Document",
+      "document_type": "2210 CONTROLLED DOCUMENT",
+      "purpose": "Use the complete module library when the final artifact class has not been selected or when a broad engineering/operating package is required.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [],
+      "optional_modules": [],
+      "default_mode": "recommended",
+      "notes": [
+        "Remove non-applicable modules only after an accountable reviewer accepts the disposition."
+      ]
+    },
+    {
+      "id": "sop",
+      "name": "Standard Operating Procedure",
+      "document_type": "SOP",
+      "purpose": "Establish repeatable operational policy, responsibility, execution, control, evidence, and review.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        20,
+        21,
+        24,
+        26,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        8,
+        19,
+        27
+      ],
+      "optional_modules": [
+        9,
+        10,
+        22,
+        23,
+        25
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "iop",
+      "name": "Internal Operating Procedure",
+      "document_type": "IOP",
+      "purpose": "Define an internal operating method with explicit authority, baseline, approvals, verification, exception, and audit controls.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        24,
+        26,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        8,
+        9,
+        27
+      ],
+      "optional_modules": [
+        22,
+        23,
+        25
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "mop",
+      "name": "Method of Procedure / Maintenance Plan",
+      "document_type": "MOP",
+      "purpose": "Control a bounded maintenance, implementation, migration, or change event from authorization through rollback and closeout.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        20,
+        24,
+        26,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        8,
+        9,
+        10,
+        19,
+        27
+      ],
+      "optional_modules": [
+        6,
+        21,
+        22,
+        23,
+        25
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "implementation-plan",
+      "name": "Implementation / Change Plan",
+      "document_type": "IMPLEMENTATION PLAN",
+      "purpose": "Plan and govern a technical implementation with dependencies, sequencing, controls, tests, communications, evidence, and rollback.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        24,
+        26,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        22,
+        23,
+        27
+      ],
+      "optional_modules": [
+        6,
+        25
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "runbook",
+      "name": "Runbook",
+      "document_type": "RUNBOOK",
+      "purpose": "Guide routine diagnosis, execution, validation, restoration, handoff, and escalation at technician level.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        24,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        5,
+        6,
+        20,
+        21,
+        26
+      ],
+      "optional_modules": [
+        9,
+        22,
+        23,
+        25
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "work-instruction",
+      "name": "Work Instruction",
+      "document_type": "WORK INSTRUCTION",
+      "purpose": "Explain a narrow, repeatable technician task with exact prerequisites, actions, results, evidence, and closeout.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        7,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        6,
+        18,
+        19,
+        20,
+        24,
+        27
+      ],
+      "optional_modules": [
+        5,
+        8,
+        9,
+        21,
+        22,
+        23,
+        25,
+        26
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "incident-playbook",
+      "name": "Incident Response Playbook",
+      "document_type": "INCIDENT PLAYBOOK",
+      "purpose": "Guide detection, triage, containment, restoration, evidence preservation, communications, escalation, and after-action correction.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        24,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        9,
+        10,
+        23
+      ],
+      "optional_modules": [
+        22,
+        25
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "emergency-procedure",
+      "name": "Emergency Operating Procedure",
+      "document_type": "EMERGENCY PROCEDURE",
+      "purpose": "Authorize only bounded emergency response with minimum necessary action, rapid escalation, evidence, restoration, and post-event review.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        24,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        9,
+        10,
+        23
+      ],
+      "optional_modules": [
+        22,
+        25
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "technical-standard",
+      "name": "Technical Standard",
+      "document_type": "TECHNICAL STANDARD",
+      "purpose": "Define mandatory technical requirements, configuration baselines, approved options, validation, exceptions, and lifecycle control.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        16,
+        20,
+        21,
+        26,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        8,
+        13,
+        19,
+        22,
+        23,
+        27,
+        28
+      ],
+      "optional_modules": [
+        14,
+        15,
+        17,
+        18,
+        24,
+        25
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "system-design",
+      "name": "System / Service Design",
+      "document_type": "SYSTEM DESIGN",
+      "purpose": "Describe requirements, architecture, interfaces, data flows, dependencies, controls, operations, recovery, and tradeoffs.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        16,
+        20,
+        21,
+        22,
+        23,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        13,
+        19,
+        24,
+        26
+      ],
+      "optional_modules": [
+        14,
+        15,
+        17,
+        18,
+        25,
+        27,
+        28
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "architecture-decision-record",
+      "name": "Architecture Decision Record",
+      "document_type": "ARCHITECTURE DECISION RECORD",
+      "purpose": "Record a significant technical choice, context, options, rationale, consequences, controls, and review triggers.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        16,
+        20,
+        22,
+        24,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        12,
+        13,
+        21,
+        23,
+        26
+      ],
+      "optional_modules": [
+        11,
+        14,
+        15,
+        17,
+        18,
+        19,
+        25,
+        27,
+        28
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "test-validation-plan",
+      "name": "Test / Validation Plan",
+      "document_type": "TEST / VALIDATION PLAN",
+      "purpose": "Demonstrate that requirements, controls, interfaces, recovery, performance, and acceptance criteria pass with attributable evidence.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        15,
+        16,
+        20,
+        21,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        14,
+        17,
+        19,
+        22,
+        23,
+        24,
+        26
+      ],
+      "optional_modules": [
+        18,
+        25,
+        27
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "recovery-continuity-plan",
+      "name": "Recovery / Continuity Plan",
+      "document_type": "RECOVERY / CONTINUITY PLAN",
+      "purpose": "Restore or sustain service through disruption with dependencies, RTO/RPO, communications, testing, evidence, and fallback.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        22,
+        25
+      ],
+      "optional_modules": [
+        13
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "training-job-aid",
+      "name": "Training Package / Job Aid",
+      "document_type": "TRAINING / JOB AID",
+      "purpose": "Enable qualified performance through objectives, prerequisites, lessons, demonstrations, exercises, assessment, remediation, and references.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        13,
+        14,
+        15,
+        16,
+        24,
+        25,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        11,
+        12,
+        17,
+        20,
+        21
+      ],
+      "optional_modules": [
+        9,
+        18,
+        19,
+        22,
+        23,
+        26
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "governance-catalog",
+      "name": "Governance Standard / Catalog",
+      "document_type": "GOVERNANCE / CATALOG",
+      "purpose": "Control definitions, ownership, approved options, data quality, lifecycle, change authority, metrics, and review.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        18,
+        19,
+        20,
+        21,
+        26,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        22,
+        24,
+        28
+      ],
+      "optional_modules": [
+        11,
+        12,
+        14,
+        15,
+        16,
+        17,
+        23,
+        25,
+        27
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "service-catalog-entry",
+      "name": "Service Catalog / Operating Model",
+      "document_type": "SERVICE CATALOG",
+      "purpose": "Define a service, consumers, ownership, interfaces, service levels, support, controls, capacity, lifecycle, and request paths.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        13,
+        16,
+        26,
+        28
+      ],
+      "optional_modules": [
+        11,
+        12,
+        14,
+        15,
+        17,
+        25,
+        27
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "data-reporting-procedure",
+      "name": "Data / Reporting Procedure",
+      "document_type": "DATA / REPORTING PROCEDURE",
+      "purpose": "Govern data acquisition, transformation, quality, classification, release, lineage, records, metrics, and correction.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        24,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        14,
+        16,
+        17,
+        23,
+        25
+      ],
+      "optional_modules": [],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "security-control-plan",
+      "name": "Security / Privacy Control Plan",
+      "document_type": "SECURITY CONTROL PLAN",
+      "purpose": "Define security, identity, privacy, audit, evidence, exception, monitoring, recovery, and recertification controls.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        26,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        14,
+        17,
+        22,
+        25,
+        27
+      ],
+      "optional_modules": [],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "monitoring-observability-plan",
+      "name": "Monitoring / Observability Plan",
+      "document_type": "MONITORING / OBSERVABILITY PLAN",
+      "purpose": "Define signals, thresholds, dashboards, alerting, ownership, triage, evidence, capacity, availability, and improvement.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        24,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        14,
+        17,
+        23,
+        25
+      ],
+      "optional_modules": [],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "retirement-decommission-plan",
+      "name": "Retirement / Decommission Plan",
+      "document_type": "RETIREMENT / DECOMMISSION PLAN",
+      "purpose": "Remove a system or service safely while preserving records, dependencies, data, access control, evidence, communications, and closure.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        15,
+        16,
+        17,
+        18,
+        20,
+        21,
+        23,
+        24,
+        26,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        14,
+        19,
+        22,
+        25,
+        27
+      ],
+      "optional_modules": [],
+      "default_mode": "recommended",
+      "notes": []
+    },
+    {
+      "id": "knowledge-article",
+      "name": "Controlled Knowledge Article",
+      "document_type": "KNOWLEDGE ARTICLE",
+      "purpose": "Provide reviewed technical guidance without becoming an execution authority or uncontrolled procedure.",
+      "required_modules": [
+        2,
+        3,
+        4,
+        6,
+        8,
+        10,
+        13,
+        15,
+        16,
+        19,
+        20,
+        24,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "recommended_modules": [
+        5,
+        7,
+        11,
+        12,
+        17,
+        18,
+        21,
+        26
+      ],
+      "optional_modules": [
+        9,
+        14,
+        22,
+        23,
+        25
+      ],
+      "default_mode": "recommended",
+      "notes": []
+    }
+  ],
+  "mandatory_control_modules": [
+    2,
+    29,
+    30,
+    31,
+    32
+  ],
+  "rules": [
+    "Select the closest approved profile.",
+    "Retain required and mandatory control modules.",
+    "Use recommended mode by default.",
+    "Remove unused optional modules instead of publishing empty placeholders.",
+    "Record Not applicable only with identified authority.",
+    "Add a new module only when the need cannot be met by an existing module."
+  ]
+}

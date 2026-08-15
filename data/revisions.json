@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "version": "v0.01",
+      "date": "2026-08-15",
+      "editor": "Document Steward",
+      "reviewer": "Template build and public-surface validation",
+      "approver": "Not approved for operational execution",
+      "summary": "Initial template-based split-repository design: public docs reader, operations-console template, and private Orchestrator control/data repository.",
+      "reference": "template:ddd1f84b8e33 previous:7b54576cd809",
+      "reference_url": "",
+      "status": "Draft"
+    }
+  ]
+}

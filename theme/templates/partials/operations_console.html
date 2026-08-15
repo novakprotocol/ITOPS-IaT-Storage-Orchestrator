@@ -1,0 +1,149 @@
+<section id="control-center" class="console-landing" aria-labelledby="control-center-title">
+  <div class="section-kicker">Operations console</div>
+  <h2 id="control-center-title">Inventory, Create, View, and Draft Enable/Disable</h2>
+  <p class="section-intro">This landing panel is a public-safe console surface. It displays placeholder inventory, drafts reviewed job JSON, and explains the private control repository boundary. It does not execute work.</p>
+  <div class="console-tabs" aria-label="Console shortcuts">
+    <a class="primary" href="#control-center">Inventory</a>
+    <a href="#create-job-draft">Create job draft</a>
+    <a href="#job-inventory">View jobs</a>
+    <a href="#server-inventory">View servers</a>
+    <a href="#enable-disable-draft">Draft enable/disable</a>
+    <a href="#script-register">Scripts</a>
+    <a href="#approval-evidence">Approvals</a>
+    <a href="#controlled-document">Document</a>
+  </div>
+  <div class="console-grid" id="inventory-summary">
+    <article class="console-card"><span>Servers</span><strong>1</strong><small>placeholder runner</small></article>
+    <article class="console-card"><span>Jobs</span><strong>3</strong><small>disabled examples</small></article>
+    <article class="console-card"><span>Scripts</span><strong>12</strong><small>Python public-safe examples</small></article>
+    <article class="console-card"><span>Execution</span><strong>OFF</strong><small>draft only</small></article>
+  </div>
+  <aside class="support-boundary-red">
+    <strong>Required support boundary</strong>
+    <p>If you are not familiar with Python or the Python runtime used by this repository, contact <code>StoragePythonTeam@</code> before editing scripts, builders, dispatchers, validators, or generated publication logic.</p>
+    <p>If you are not familiar with Git, GitHub, GitHub Enterprise, or GitOps, contact <code>StorageGitOPSTeam@</code> before editing orchestration, repository-control, schedule, branch, Pages, or release content.</p>
+  </aside>
+
+  <section id="create-job-draft" aria-labelledby="create-job-draft-title">
+    <h3 id="create-job-draft-title">Create job draft</h3>
+    <p>Generate reviewed JSON for a private control repository commit. This browser control does not write Git and does not execute work.</p>
+    <form class="console-form" onsubmit="return false;">
+      <div class="console-form-grid">
+        <label>Enabled state<select id="consoleEnabled"><option value="false" selected>false</option><option value="true">true</option></select></label>
+        <label>Server<select id="consoleServer"><option>example-runner-01</option><option value="label:role=orchestrator-runner">Any orchestrator runner</option></select></label>
+        <label>Job ID<input id="consoleJobId" value="example-daily-inventory"></label>
+        <label>Schedule type<select id="consoleScheduleType"><option>daily</option><option>interval</option><option>manual</option></select></label>
+        <label>Time / interval<input id="consoleScheduleValue" value="01:10"></label>
+        <label>Timezone<input id="consoleTimezone" value="America/New_York"></label>
+        <label>Mode<select id="consoleMode"><option>observe-only</option><option>publish-only</option><option>manual-approval-required</option></select></label>
+        <label class="console-span-2">Entrypoint<input id="consoleEntrypoint" value="scripts/examples/noop_receipt.py"></label>
+        <label>Timeout seconds<input id="consoleTimeout" value="1800"></label>
+        <label class="console-span-2">Working directory<input id="consoleWorkingDirectory" value="/opt/example-orchestrator"></label>
+        <label>Credential reference<input id="consoleCredential" value="none"></label>
+        <label class="console-span-2">Output path<input id="consoleOutputPath" value="/var/lib/example-orchestrator"></label>
+      </div>
+      <div class="console-tabs">
+        <button class="console-button primary" id="consoleGenerateJob" type="button">Generate job JSON</button>
+        <button class="console-button" id="consoleCopyJob" type="button">Copy JSON</button>
+      </div>
+      <textarea id="consoleJobJson" spellcheck="false" aria-label="Generated job JSON"></textarea>
+    </form>
+  </section>
+
+  <section id="job-inventory" aria-labelledby="job-inventory-title">
+    <h3 id="job-inventory-title">View jobs</h3>
+    <div class="data-table-wrap" role="region" aria-label="Public-safe job inventory" tabindex="0">
+      <table class="data-table">
+        <thead><tr><th scope="col">Job</th><th scope="col">Target</th><th scope="col">Schedule</th><th scope="col">State</th></tr></thead>
+        <tbody>
+          <tr><td><code>example-daily-inventory</code></td><td>example-runner-01</td><td>daily 01:10 America/New_York</td><td>disabled placeholder</td></tr>
+          <tr><td><code>example-pages-publication</code></td><td>example-runner-01</td><td>manual</td><td>disabled placeholder</td></tr>
+          <tr><td><code>example-manual-review</code></td><td>example-runner-01</td><td>manual</td><td>disabled placeholder</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="server-inventory" aria-labelledby="server-inventory-title">
+    <h3 id="server-inventory-title">View servers</h3>
+    <div class="data-table-wrap" role="region" aria-label="Public-safe server inventory" tabindex="0">
+      <table class="data-table">
+        <thead><tr><th scope="col">Server</th><th scope="col">Role</th><th scope="col">Timezone</th><th scope="col">State</th></tr></thead>
+        <tbody>
+          <tr><td><code>example-runner-01</code></td><td>orchestrator-runner</td><td>America/New_York</td><td>disabled placeholder</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="enable-disable-draft" aria-labelledby="enable-disable-draft-title">
+    <h3 id="enable-disable-draft-title">Draft enable/disable</h3>
+    <p>The public console can draft an enable/disable change. The private control repository commit is the authority.</p>
+    <pre><code>{
+  "change_type": "job-enabled-state",
+  "job_id": "example-daily-inventory",
+  "old_enabled": false,
+  "new_enabled": true,
+  "requires_review": true,
+  "requires_private_control_repo_commit": true
+}</code></pre>
+  </section>
+
+  <section id="script-register" aria-labelledby="script-register-title">
+    <h3 id="script-register-title">Scripts</h3>
+    <p>Public examples are Python-only and non-operational. Real scripts belong in the private control repository and remain disabled until reviewed.</p>
+  </section>
+
+  <section id="approval-evidence" aria-labelledby="approval-evidence-title">
+    <h3 id="approval-evidence-title">Approvals and SHA evidence</h3>
+    <p>Enablement requires a private control-repository commit, reviewer, approver, release SHA, and rollback reference.</p>
+  </section>
+
+  <div id="controlled-document" class="visually-hidden" aria-hidden="true">Controlled document begins below.</div>
+
+  <script>
+    (function () {
+      function value(id) { var node = document.getElementById(id); return node ? node.value : ""; }
+      function renderJob() {
+        var server = value("consoleServer");
+        var target = server.indexOf("label:") === 0 ? { label_selector: server.slice(6) } : { server_id: server };
+        var job = {
+          schema_version: "1.0",
+          job_id: value("consoleJobId").trim(),
+          display_name: value("consoleJobId").trim().replace(/-/g, " "),
+          enabled: value("consoleEnabled") === "true",
+          target: target,
+          schedule: {
+            type: value("consoleScheduleType"),
+            value: value("consoleScheduleValue").trim(),
+            timezone: value("consoleTimezone").trim(),
+            missed_run_policy: "skip"
+          },
+          execution: {
+            mode: value("consoleMode"),
+            entrypoint: value("consoleEntrypoint").trim(),
+            arguments: [],
+            working_directory: value("consoleWorkingDirectory").trim(),
+            credential_reference: value("consoleCredential").trim()
+          },
+          outputs: { root: value("consoleOutputPath").trim() },
+          policy: {
+            timeout_seconds: Number(value("consoleTimeout") || 1800),
+            concurrency: "forbid",
+            retry_count: 0
+          }
+        };
+        var output = document.getElementById("consoleJobJson");
+        if (output) output.value = JSON.stringify(job, null, 2);
+      }
+      var generate = document.getElementById("consoleGenerateJob");
+      if (generate) generate.addEventListener("click", renderJob);
+      var copy = document.getElementById("consoleCopyJob");
+      if (copy) copy.addEventListener("click", function () {
+        var output = document.getElementById("consoleJobJson");
+        if (output) { output.select(); document.execCommand("copy"); }
+      });
+      renderJob();
+    }());
+  </script>
+</section>

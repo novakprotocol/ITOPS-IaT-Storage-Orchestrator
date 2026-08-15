@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "repository": "ITOPS-IaT-Storage-Orchestrator",
+  "ghe_host": "github.com",
+  "size_kib": 108,
+  "size_bytes": 110592,
+  "size_display": "108 KiB",
+  "size_band": "healthy",
+  "measured_at": "2026-08-15T17:25:51.618569+00:00",
+  "source": "GitHub repository metadata via authenticated CLI",
+  "size_status": "api-measured",
+  "policy": "Under 1 GiB healthy; 1-5 GiB review; 5 GiB or larger corrective action",
+  "source_commit": "7b54576cd809",
+  "branch": "main"
+}

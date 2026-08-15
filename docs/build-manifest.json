@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "product": "2210Docs",
+  "engine": "iatdocs",
+  "engine_version": "0.08.2",
+  "build_id": "52e2ba277d479cb4249f",
+  "generated_at": "2026-08-15T17:25:56Z",
+  "document": {
+    "document_id": "ITOPS-IAT-STORAGE-ORCH-DOC-0001",
+    "title": "ITOPS-IaT-Storage-Orchestrator",
+    "version": "v0.01",
+    "status": "Draft"
+  },
+  "git": {
+    "commit": "uncommitted",
+    "short_commit": "uncommitted",
+    "branch": "unknown",
+    "dirty": true
+  },
+  "source_digest": "52e2ba277d479cb4249f2b2b4c908948de93df37ba31e171c2dcf9c2bb10c504",
+  "source_files": [
+    {
+      "path": "ai/derived-document-intake.example.json",
+      "sha256": "de71ec34052aff317ae666e7f5331d56aba6483d733d656578a826ab71f552b4"
+    },
+    {
+      "path": "ai/derived-document-intake.schema.json",
+      "sha256": "537d148663f8306b14ee9d6b94c892e9bb5777e964ad2c12f79ce0ab1f69ac43"
+    },
+    {
+      "path": "ai/document-profiles.json",
+      "sha256": "3d16b653af82df15e3d137290e34a2ec7755ecbeb221e26fe9cdedcdbd8f19a3"
+    },
+    {
+      "path": "ai/README.md",
+      "sha256": "1e60adf9027f66c0da5b9d0fb063e897181553f09ed8b90bbaa9b02dbadc078b"
+    },
+    {
+      "path": "ai/template-contract.json",
+      "sha256": "6bbefe75b34755156dea945ca1650757f852ea8ff45e5c1d7e3cfe47ebbafec8"
+    },
+    {
+      "path": "content/index.md",
+      "sha256": "299043ce2c0590f26606d1d5da12a492b76d39c95cedd6fd7e7b2f09a43c8b0d"
+    },
+    {
+      "path": "data/contributions.json",
+      "sha256": "9b4e3aebd719dacb0dd35bd44263fc20916d40236590821eb7ba2ea25bfed083"
+    },
+    {
+      "path": "data/document.json",
+      "sha256": "dff2706d03174f1fbeae96c955715ca3e87f28260df9d63ed7a69f6ad6a64f61"
+    },
+    {
+      "path": "data/repository.json",
+      "sha256": "e6aa103cfcb5cb150b2ca02f7c63374db296f1fec1fe11b8af84cf7f26333f88"
+    },
+    {
+      "path": "data/revisions.json",
+      "sha256": "c441885416c223a62edfc3f137526a594ece7ed0c1dbb48787bb57304e25ab32"
+    },
+    {
+      "path": "iatdocs.toml",
+      "sha256": "0054a4031898eb097120fa0680b2c4ca544f309f5da8f549c692b66f851ae8c0"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "f9b3dc87bd614bddba04a7ff492812f6d50dec09860814aa2d2fbcbb17082667"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "020ecce60fed601647fdf7c1336aed4e83098e0c6b6bb1aa3d0d7fecaf6e1446"
+    },
+    {
+      "path": "section-library/2210-master.md",
+      "sha256": "a8d6ac4def1367b34dc63a024dd4cf699e97766a2a52b1d8073e791836ab7922"
+    },
+    {
+      "path": "section-library/modules.json",
+      "sha256": "48a4b01a29631b4b6358c7ce7e1189dc609364c7740140db5a3b36a423cc730c"
+    },
+    {
+      "path": "source-material-register.json",
+      "sha256": "58541cb69a96110df1a89be827f14ec56f3312fd7bfe722d8cc34c5dcac2cd4e"
+    },
+    {
+      "path": "src/iatdocs/__init__.py",
+      "sha256": "9bcda2c63c28d95fb6441dd9774f347c551ed1ae31d3960a078a3d3ea9a5b616"
+    },
+    {
+      "path": "src/iatdocs/__main__.py",
+      "sha256": "0ace1cb995dd478c093ae95f70076bd48a44b9d7306a19e795cd0992af657283"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/__init__.cpython-313.pyc",
+      "sha256": "9dd5def17f5e1e3b0d623069834b1108fb9c5311b1abec89b7daf9600820be4c"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/__main__.cpython-313.pyc",
+      "sha256": "78c937008fe7f30b46e8cad4a32ae522c8f676f0bfbbd5d7dc256cabb3a99100"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/build.cpython-313.pyc",
+      "sha256": "8d978f512f0fe6a0738630ac59c54f4967c66874480fa72367f30eb9f2d6ee07"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/cli.cpython-313.pyc",
+      "sha256": "be3ae6568f6524217c4f3ae33310d410e1be6eabaddf1604cce054615255b34d"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/config.cpython-313.pyc",
+      "sha256": "b9494f15ee2a99675851f0a697720aa81d3e792578955593bb65a51bfff13afc"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/errors.cpython-313.pyc",
+      "sha256": "de08f7949e86fe6a8fee2854975a015acd823f021d604a112ab847c942b64212"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/initdoc.cpython-313.pyc",
+      "sha256": "d5944ea868df4c6ed696c2fb5eb79848d1e927e1626c47674f38f83f78b54335"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/markdown.cpython-313.pyc",
+      "sha256": "40a1b3e11606157f22ac7f44f6d3bf2689ea314248833cf6c3d28126777da256"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/metrics.cpython-313.pyc",
+      "sha256": "d5aa12e4aff0f5d3adcf76d4fdbbd3911124e859398f0b5bd640287079076079"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/migrate.cpython-313.pyc",
+      "sha256": "d54a883feb50b25493b5ef1fec4a829b2b75fa790f813206092bc818f06d6fff"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/serve.cpython-313.pyc",
+      "sha256": "d60d56f81bf8bd39c6d46b9300e21493257e31815b05a68f452f00fda5e7f240"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/util.cpython-313.pyc",
+      "sha256": "265ce0bef3967b513f6576b29334b4be05f2b7a598322153ac2998769344d6ed"
+    },
+    {
+      "path": "src/iatdocs/__pycache__/validate.cpython-313.pyc",
+      "sha256": "7c2f5c09b4875d527f9316bd542c798466fae4e5a643be2a5ec74d5b4f7026a4"
+    },
+    {
+      "path": "src/iatdocs/build.py",
+      "sha256": "24557941fe4eb14bffcbdd766d6962c722a8634da280f8b791d6f71f56fa1adb"
+    },
+    {
+      "path": "src/iatdocs/cli.py",
+      "sha256": "b15d8962077d67cdb67a3d2d08b8d3c6e49f81d465ddc7bbe4eb06a373865996"
+    },
+    {
+      "path": "src/iatdocs/config.py",
+      "sha256": "dc00640fe6b18776147204b11f47057cfa26375579316cf9d02183a3f05b0bac"
+    },
+    {
+      "path": "src/iatdocs/errors.py",
+      "sha256": "1e4a4f8af41938af264acfe67725c6e6fcbfd64a79d39fda05458cdd59dba548"
+    },
+    {
+      "path": "src/iatdocs/initdoc.py",
+      "sha256": "89331e36a7a7af2f1f6f8b661c9bb5f1cd23efc960814280477a1e0b58586491"
+    },
+    {
+      "path": "src/iatdocs/markdown.py",
+      "sha256": "b334701329fae10ffa49b0978f6b1dfb02c6b3b5f526e0f4f51d689efc96a109"
+    },
+    {
+      "path": "src/iatdocs/metrics.py",
+      "sha256": "7ea06a6fb2bef11f07b23d4a270cf60892eca0865efb15ca332140cbb6c90dae"
+    },
+    {
+      "path": "src/iatdocs/migrate.py",
+      "sha256": "dc2915f9bc76e98cd2d37f20ea288de627c705541fd4ae8f68e5cf5426023979"
+    },
+    {
+      "path": "src/iatdocs/serve.py",
+      "sha256": "2e92d38eda387585df84b89199640742999e8549d2cf0edfef414cb78c77fa57"
+    },
+    {
+      "path": "src/iatdocs/util.py",
+      "sha256": "31f8a5198c93178d3b37fc19ec62d801c9cbee8e4fc06428f34b2531da9a2213"
+    },
+    {
+      "path": "src/iatdocs/validate.py",
+      "sha256": "7d5d21578c2257fa3e94f96d85770116be61a852cd8202d8f312643326e9ca40"
+    },
+    {
+      "path": "TEMPLATE_VERSION",
+      "sha256": "ae0e3e32fcc20de948b4527d74b8325ea4a8203747169f215f1e8e28f4feb5c2"
+    },
+    {
+      "path": "theme/assets/brand/watermark.svg",
+      "sha256": "fcd6df5a2427c109b713cd098090bf55d9b05113aa77180ebff1a1de20e6e552"
+    },
+    {
+      "path": "theme/assets/css/manual.css",
+      "sha256": "9185dbec99b157e0f7332a7e2ae500fc6c428f6f3fe5738a9cb64ec288a419a2"
+    },
+    {
+      "path": "theme/assets/js/manual.js",
+      "sha256": "529ff4dab87723a6d7765603644fc86d5846d4316b2e2cd38c5e3e967e5b1c8c"
+    },
+    {
+      "path": "theme/templates/manual.html",
+      "sha256": "b885091baf57700c1fd1a0c0758e9b87d969f6438c0a343a06affed37001df4e"
+    },
+    {
+      "path": "theme/templates/partials/cover.html",
+      "sha256": "03bfc37290a1d2ef4f36bd3302f6d86be0f836791b66c7556fb61b81b6485185"
+    },
+    {
+      "path": "theme/templates/partials/editing.html",
+      "sha256": "c4959b40688bc3df5899ca01be6ba4adbd874bdff67c3f4aca1360de59450330"
+    },
+    {
+      "path": "theme/templates/partials/intelligence.html",
+      "sha256": "f47b3522fe7df020f69cf5d87c10094d88446055bc319d40173a2aaa3cea481b"
+    },
+    {
+      "path": "theme/templates/partials/operations_console.html",
+      "sha256": "e95b9999d7bf0e3c90336e3c4bcae8e8df5b6978b0152e150158d11e43cb8d9a"
+    },
+    {
+      "path": "theme/templates/partials/revisions.html",
+      "sha256": "0404e4593957e87f6dc8ca5b9fc67665050983cdf42250b13778d68798c0002f"
+    }
+  ],
+  "output_files": [
+    {
+      "path": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "404.html",
+      "bytes": 569,
+      "sha256": "fa487d2b2e766e91ed3ae68b48f13985b6d0af12e235c3e8629e940cc1a8e6b8"
+    },
+    {
+      "path": "assets/brand/watermark.svg",
+      "bytes": 706,
+      "sha256": "fcd6df5a2427c109b713cd098090bf55d9b05113aa77180ebff1a1de20e6e552"
+    },
+    {
+      "path": "assets/css/manual.css",
+      "bytes": 38310,
+      "sha256": "9185dbec99b157e0f7332a7e2ae500fc6c428f6f3fe5738a9cb64ec288a419a2"
+    },
+    {
+      "path": "assets/js/manual.js",
+      "bytes": 41131,
+      "sha256": "529ff4dab87723a6d7765603644fc86d5846d4316b2e2cd38c5e3e967e5b1c8c"
+    },
+    {
+      "path": "build-receipt.txt",
+      "bytes": 317,
+      "sha256": "2fe8610bdc43693fe272256ca3ce24dc7d8d576983c5b23d1a70714705146530"
+    },
+    {
+      "path": "index.html",
+      "bytes": 36919,
+      "sha256": "07da2bac4fa05d86f9a45567b491beb8bc62119c836ccb58fb7c8e98e3935521"
+    },
+    {
+      "path": "search-index.json",
+      "bytes": 13312,
+      "sha256": "705e78d66acc3fcd102b4ff6b95a33b27f2903fef3cc81cb3ca9d5acae7d2272"
+    },
+    {
+      "path": "site-version.json",
+      "bytes": 299,
+      "sha256": "248ccc8c13de9b7d7610380c28841595e54beb9cb43ecde5a89623ffd58045d4"
+    },
+    {
+      "path": "source-map.json",
+      "bytes": 2134,
+      "sha256": "5f96223eaf60914c996ed018e8bbf6e7f8ab750f3d5197998601ce5bb7860820"
+    }
+  ],
+  "validation": {
+    "mode": "template",
+    "passed": true,
+    "error_count": 0,
+    "warning_count": 0,
+    "info_count": 1,
+    "errors": [],
+    "warnings": [],
+    "info": [
+      {
+        "severity": "info",
+        "code": "VALIDATION_SUMMARY",
+        "message": "validated 1 content file(s) in template mode",
+        "path": null
+      }
+    ]
+  }
+}

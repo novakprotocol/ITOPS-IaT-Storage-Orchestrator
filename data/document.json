@@ -1,0 +1,57 @@
+{
+  "document_id": "ITOPS-IAT-STORAGE-ORCH-DOC-0001",
+  "document_type": "CONTROLLED DESIGN DOCUMENT",
+  "document_profile": "System / Service Design",
+  "title": "ITOPS-IaT-Storage-Orchestrator",
+  "subtitle": "Controlled documentation reader for the storage orchestrator and its private control repository model",
+  "summary": "Defines the documentation reader, control-console boundary, private control/data repository split, runner registry, job registry, script register, approval evidence, and Python-only implementation rule.",
+  "version": "v0.01",
+  "status": "Draft",
+  "visibility": "Public-safe",
+  "classification": "Public-safe placeholder content only",
+  "sensitivity": "No credentials, internal hostnames, private inventory, or live schedules",
+  "service_or_system": "ITOPS IaT Storage Orchestrator",
+  "audience": "Operators, reviewers, maintainers, and automation stewards",
+  "owner": "Storage Operations",
+  "steward": "Document Steward",
+  "approval_authority": "Not approved for operational execution",
+  "records_location": "Repository-controlled source and generated Pages receipt",
+  "review_cycle": "Annual or after material architecture change",
+  "supersedes": "Initial public-safe draft",
+  "related_documents": [
+    {
+      "title": "Operations Console Template",
+      "relationship": "Console template for derived control surfaces"
+    },
+    {
+      "title": "Private Orchestrator Control Repository",
+      "relationship": "Desired-state source for servers, jobs, scripts, approvals, releases, and receipts"
+    }
+  ],
+  "creator": {
+    "name": "Document Steward",
+    "account": "repository-admin",
+    "work_ledger_id": "Not configured",
+    "position_number": "Not configured",
+    "created_at": "2026-08-15",
+    "aliases": []
+  },
+  "effective_date": "Not effective",
+  "last_review_date": "2026-08-15",
+  "review_date": "2027-08-15",
+  "source_repository": "ITOPS-IaT-Storage-Orchestrator",
+  "repository_url": "https://example.invalid/ITOPS-IaT-Storage-Orchestrator",
+  "ghe_host": "github.com",
+  "source_branch": "main",
+  "content_path": "content/index.md",
+  "edit_url": "https://example.invalid/ITOPS-IaT-Storage-Orchestrator/edit/main/content/index.md",
+  "template_version": "0.08.2-derived",
+  "contribution_paths": [
+    "content/index.md",
+    "data/document.json",
+    "data/revisions.json"
+  ],
+  "use_restriction": "Public-safe documentation only. Operational authority belongs in the private control repository after review and approval.",
+  "footer_text": "Copyright (c) 2026 Matthew S. Novak. All Rights Reserved.",
+  "engine_version": "0.08.2"
+}

@@ -1,0 +1,58 @@
+{
+  "document_profile": "iop",
+  "document_id": "ITOPS-IOP-0001",
+  "title": "Synthetic Service Onboarding",
+  "subtitle": "Example intake only \u2014 not operational authority",
+  "owner": "Configure Owning Organization",
+  "steward": "Configure Document Steward",
+  "creator": {
+    "name": "Configure Original Creator",
+    "account": "CONFIGURE-GHE-LOGIN",
+    "work_ledger_id": "CONFIGURE-WORK-LEDGER-ID",
+    "position_number": "CONFIGURE-POSITION-NUMBER",
+    "created_at": "2026-08-13"
+  },
+  "source_repository": "OWNER/NEW-2210-DOCUMENT-REPOSITORY",
+  "purpose": "Define a controlled and evidence-backed onboarding method for a synthetic service.",
+  "scope": "Synthetic example scope used only to demonstrate the intake contract.",
+  "source_materials": [
+    "Approved source document or user brief"
+  ],
+  "required_modules": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    24,
+    26,
+    28,
+    29,
+    30,
+    31,
+    32
+  ],
+  "known_authorities": [],
+  "known_risks": [],
+  "known_constraints": [],
+  "required_approvals": [],
+  "attachments": [],
+  "ticket_or_reference": "PR #EXAMPLE",
+  "unknowns_or_blockers": [
+    "Replace all synthetic fields before release."
+  ],
+  "profile_mode": "recommended"
+}

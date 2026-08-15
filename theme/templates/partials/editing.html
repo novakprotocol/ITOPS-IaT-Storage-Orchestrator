@@ -1,0 +1,17 @@
+<details id="editing-workflow" class="editing-workflow">
+  <summary>How this controlled document is created and edited</summary>
+  <div class="editing-workflow-body">
+    <p><strong>The canonical repository supplies the Python engine, document contract, and reader theme. Every SOP, IOP, MOP, runbook, standard, design, plan, training package, catalog, or other controlled artifact is created as its own private repository and edited in that repository.</strong> The Pages site is the controlled reading surface; content changes occur through the repository so authorship, review, approval, and history remain attributable.</p>
+    <ol>
+      <li>Create a new private controlled-document repository with <strong>Use this template</strong>. Do not write an actual controlled document in the canonical engine/template repository.</li>
+      <li>Run <code>python -m iatdocs init</code> or point an approved AI agent to <code>AGENTS.md</code> and the machine-readable contract.</li>
+      <li>Set the document ID, owner, creator, repository, version, last-review date, next-review date, and effective date in <code>{{ paths.document_data | e }}</code>.</li>
+      <li>Edit controlled Markdown under <code>{{ paths.content_dir | e }}</code> on a branch. Use a pull request for review and approval.</li>
+      <li>Record material releases in <code>{{ paths.revisions_data | e }}</code>, including editor, reviewer, approver, change summary, and supporting reference.</li>
+      <li>Run <code>python -m .\doc2210.cmd validate</code> and <code>python -m .\doc2210.cmd build --strict</code>.</li>
+      <li>After merge to <code>{{ doc.source_branch | default("main") | e }}</code>, the GHE workflow publishes the generated static site. Open browser tabs detect the newer build and display an update notice. Refreshing saves and restores the reader’s place.</li>
+      <li>The metrics command refreshes GHE repository size, recent edits, contributor percentages, word activity, and root-level Work Ledger integration records.</li>
+    </ol>
+    <p class="editing-note"><strong>Engine versus derived document:</strong> the canonical repository controls reusable compilation, presentation, behavior, schemas, and policy. Each derived document repository controls its own content, permissions, creator, revisions, Git history, Pages publication, and Work Ledger mappings.</p>
+  </div>
+</details>

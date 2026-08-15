@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Defines the documentation reader, control-console boundary, private control/data repository split, runner registry, job registry, script register, approval evidence, and Python-only implementation rule.">
+  <meta name="manual-build-id" content="52e2ba277d479cb4249f">
+  <meta name="generator" content="2210Docs 0.08.2">
+  <title>ITOPS-IaT-Storage-Orchestrator — CONTROLLED DESIGN DOCUMENT v0.01</title>
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('controlled-manual-theme');
+        var preferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = saved || preferred;
+      } catch (error) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    }());
+  </script>
+  <link rel="stylesheet" href="assets/css/manual.css">
+</head>
+<body
+  data-document-key="ITOPS-IaT-Storage-Orchestrator|ITOPS-IAT-STORAGE-ORCH-DOC-0001"
+  data-document-id="ITOPS-IAT-STORAGE-ORCH-DOC-0001"
+  data-document-version="v0.01"
+  data-template-version="0.08.2-derived"
+  data-engine-version="0.08.2"
+  data-build-id="52e2ba277d479cb4249f"
+  data-update-endpoint="site-version.json"
+  data-bookmark-limit="20"
+  data-update-check-seconds="60"
+>
+  <a class="skip-link" href="#manualContent">Skip to document content</a>
+
+  <header class="topbar" aria-label="Document controls">
+    <div class="repo-facts" title="Repository: ITOPS-IaT-Storage-Orchestrator · Source: GitHub repository metadata via authenticated CLI · Last measured: 2026-08-15T17:25:51.618569+00:00 · Policy: Under 1 GiB healthy; 1-5 GiB review; 5 GiB or larger corrective action">
+      <span>GHE repo size: <strong>108 KiB</strong></span>
+      <span>Last review: <strong>2026-08-15</strong></span>
+      <span>Review due: <strong>2027-08-15</strong></span>
+    </div>
+    <div class="brand" title="ITOPS-IaT-Storage-Orchestrator">ITOPS-IaT-Storage-Orchestrator</div>
+    <div class="spacer"></div>
+    <a class="optional" href="#document-intelligence">History</a>
+    <details id="editMenu" class="edit-menu">
+      <summary>Edit</summary>
+      <div class="edit-menu-panel" role="menu" aria-label="Repository edit links">
+          <a id="editSourceLink" role="menuitem" href="https://example.invalid/ITOPS-IaT-Storage-Orchestrator/edit/main/content/index.md" target="_blank" rel="noopener">Edit document</a>
+          <a id="editControlLink" role="menuitem" href="https://example.invalid/ITOPS-IaT-Storage-Orchestrator/edit/main/data/document.json" target="_blank" rel="noopener">Edit document control</a>
+          <a id="editRevisionsLink" role="menuitem" href="https://example.invalid/ITOPS-IaT-Storage-Orchestrator/edit/main/data/revisions.json" target="_blank" rel="noopener">Edit revision history</a>
+      </div>
+    </details>
+    <button id="readingButton" class="reading-primary" type="button" title="Open the first numbered document section">Read section 1</button>
+    <div id="bookmarkControl" class="bookmark-control">
+      <button id="quickBookmarkButton" class="bookmark-save-button" type="button" title="Save an additional bookmark at the current reading position; use the manager to add or edit a ticket reference and note">
+        <span>Bookmark</span><strong id="bookmarkPercent">0%</strong>
+      </button>
+      <details id="bookmarkMenu" class="bookmark-menu">
+        <summary aria-label="Manage reading progress and bookmarks" title="Manage reading progress and bookmarks">▾</summary>
+        <div class="bookmark-menu-panel" role="dialog" aria-label="Reading progress and bookmarks">
+          <section class="bookmark-progress-card" aria-label="Automatic reading progress">
+            <span class="panel-label">Automatic reading progress</span>
+            <strong id="bookmarkProgressStatus">Not started</strong>
+            <small id="bookmarkProgressDetail">Progress moves forward automatically as the reader advances through the document.</small>
+          </section>
+          <div class="bookmark-create-form" aria-label="Create bookmark">
+            <label class="bookmark-name-label" for="bookmarkName">Bookmark label <span>optional</span></label>
+            <input id="bookmarkName" class="bookmark-name-input" type="text" maxlength="80" placeholder="Example: Recheck validation evidence" autocomplete="off">
+            <label class="bookmark-name-label" for="bookmarkReference">Ticket / controlled-record reference <span>optional</span></label>
+            <input id="bookmarkReference" class="bookmark-reference-input" type="text" maxlength="120" placeholder="Example: CHG0123456, INC0098765, TASK-42, or PR #18" autocomplete="off">
+            <label class="bookmark-name-label" for="bookmarkNote">Bookmark note <span>optional</span></label>
+            <textarea id="bookmarkNote" class="bookmark-note-input" maxlength="280" rows="2" placeholder="Why this location matters or what must be revisited"></textarea>
+            <button id="saveNamedBookmarkButton" class="save-named-bookmark" type="button">Save bookmark at current position</button>
+          </div>
+          <div class="bookmark-list-heading"><strong>Saved bookmarks</strong><span><b id="bookmarkCount">0</b> / 20</span></div>
+          <div id="bookmarkList" class="bookmark-list"><p class="bookmark-empty">No additional bookmarks saved.</p></div>
+          <button id="clearReadingDataButton" class="clear-reading-data" type="button">Clear reading data</button>
+        </div>
+      </details>
+    </div>
+    <button id="navToggle" class="mobile-only" type="button" aria-controls="docnav" aria-expanded="false">Contents</button>
+    <button id="themeButton" type="button"><span data-theme-label>Dark</span><span class="theme-suffix"> theme</span></button>
+  </header>
+
+  <div id="progressLine" class="progress-line" aria-hidden="true"></div>
+  <button id="returnMarker" class="bookmark-return-marker" type="button" hidden aria-label="Return to the furthest-read point">
+    <span>Return to furthest read</span><strong id="returnMarkerPercent">0%</strong>
+  </button>
+
+  <aside id="updateNotice" class="update-notice" role="status" aria-live="polite" hidden>
+    <div>
+      <strong id="updateNoticeTitle">Update available — refresh your browser</strong>
+      <span id="updateNoticeText">A newer published build is available. Refresh your browser to read the current source.</span>
+    </div>
+    <div class="update-actions">
+      <button id="refreshUpdateButton" type="button">Refresh browser</button>
+      <button id="dismissUpdateButton" class="secondary" type="button">Not now</button>
+    </div>
+  </aside>
+
+  <div id="readingNotice" class="reading-notice" role="status" aria-live="polite" hidden></div>
+
+  <div class="manual-grid">
+    <aside id="docnav" class="docnav" aria-label="Document navigation">
+      <section class="truth-panel" aria-label="Authoritative source notice">
+        <strong>Live source of truth</strong>
+        <p>This page is the current controlled reading copy. Approved repository changes publish here; copied or captured versions are uncontrolled.</p>
+      </section>
+
+      <section class="reading-panel" aria-labelledby="reading-panel-title">
+        <span id="reading-panel-title" class="panel-label">Reading progress</span>
+        <strong id="readingStatus" aria-live="polite">Not started</strong>
+        <small id="readingTimestamp">Progress begins at section 1 and automatically follows the furthest point reached in this browser.</small>
+        <div class="reading-actions">
+          <button id="resumeSidebarButton" type="button" disabled>Resume furthest read</button>
+          <button id="startOverButton" type="button">Go to section 1</button>
+          <button id="openBookmarksButton" type="button">Manage bookmarks</button>
+        </div>
+        <div id="sidebarBookmarkList" class="sidebar-bookmark-list" aria-label="Saved bookmarks"></div>
+      </section>
+
+      <div class="nav-title">Document navigation</div>
+      <a class="control-link nav-special-link" href="#document-intelligence">
+        <span>History &amp; contribution</span>
+        <strong>0 contributors</strong>
+      </a>
+      <a class="control-link nav-special-link" href="#controlled-revisions">
+        <span>Controlled revisions</span>
+        <strong>1 entries</strong>
+      </a>
+      <a class="control-link nav-special-link" href="#editing-workflow">
+        <span>Editing workflow</span>
+        <strong>Repository source</strong>
+      </a>
+      <label class="visually-hidden" for="tocSearch">Filter document sections</label>
+      <input id="tocSearch" type="search" placeholder="Filter sections" autocomplete="off">
+      <h2 class="toc-heading">Contents</h2>
+      <ol id="tocList" class="toc-list"></ol>
+      <noscript><p class="nav-note">The contents list requires JavaScript. The document remains readable below.</p></noscript>
+
+      <div class="nav-title status-title">Document control</div>
+      <dl class="nav-metadata">
+        <div><dt>Creator</dt><dd>Document Steward</dd></div>
+        <div><dt>Type</dt><dd>CONTROLLED DESIGN DOCUMENT</dd></div>
+        <div><dt>Profile</dt><dd>System / Service Design</dd></div>
+        <div><dt>Service / system</dt><dd>ITOPS IaT Storage Orchestrator</dd></div>
+        <div><dt>Version</dt><dd>v0.01</dd></div>
+        <div><dt>Status</dt><dd>Draft</dd></div>
+        <div><dt>Visibility</dt><dd>Public-safe</dd></div>
+        <div><dt>Reviewed</dt><dd>2026-08-15</dd></div>
+        <div><dt>Review due</dt><dd>2027-08-15</dd></div>
+        <div><dt>Engine</dt><dd>0.08.2</dd></div>
+      </dl>
+    </aside>
+
+    <main class="manual-main">
+<header id="manual-top" class="cover">
+  <div class="eyebrow">CONTROLLED DESIGN DOCUMENT · ITOPS-IAT-STORAGE-ORCH-DOC-0001</div>
+  <h1>ITOPS-IaT-Storage-Orchestrator</h1>
+  <h2>Controlled documentation reader for the storage orchestrator and its private control repository model</h2>
+  <p class="lead">Defines the documentation reader, control-console boundary, private control/data repository split, runner registry, job registry, script register, approval evidence, and Python-only implementation rule.</p>
+
+  <div class="badges" aria-label="Document status">
+    <span class="badge type">CONTROLLED DESIGN DOCUMENT</span>
+<span class="badge profile">System / Service Design</span>    <span class="badge">ITOPS-IAT-STORAGE-ORCH-DOC-0001</span>
+    <span class="badge">v0.01</span>
+    <span class="badge draft">Draft</span>
+    <span class="badge private">Public-safe</span>
+  </div>
+
+  <dl class="document-metadata">
+    <div><dt>Creator</dt><dd>Document Steward <span class="account">@repository-admin</span><small class="work-ledger-id">Work Ledger: Not configured</small></dd></div>
+    <div><dt>Created</dt><dd>2026-08-15</dd></div>
+    <div><dt>Work Ledger</dt><dd>Not configured · Position Not configured</dd></div>
+    <div><dt>Profile</dt><dd>System / Service Design</dd></div>
+    <div><dt>Service / system</dt><dd>ITOPS IaT Storage Orchestrator</dd></div>
+    <div><dt>Audience</dt><dd>Operators, reviewers, maintainers, and automation stewards</dd></div>
+    <div><dt>Owner</dt><dd>Storage Operations</dd></div>
+    <div><dt>Document steward</dt><dd>Document Steward</dd></div>
+    <div><dt>Approval authority</dt><dd>Not approved for operational execution</dd></div>
+    <div><dt>Classification</dt><dd>Public-safe placeholder content only<small>No credentials, internal hostnames, private inventory, or live schedules</small></dd></div>
+    <div><dt>Effective date</dt><dd>Not effective</dd></div>
+<div><dt>Last review</dt><dd>2026-08-15</dd></div>    <div><dt>Next review</dt><dd>2027-08-15<small>Annual or after material architecture change</small></dd></div>
+    <div><dt>Supersedes</dt><dd>Initial public-safe draft</dd></div>
+    <div><dt>Records location</dt><dd>Repository-controlled source and generated Pages receipt</dd></div>
+    <div><dt>Source repository</dt><dd><a href="https://example.invalid/ITOPS-IaT-Storage-Orchestrator" target="_blank" rel="noopener">ITOPS-IaT-Storage-Orchestrator</a></dd></div>
+  </dl>
+
+  <aside class="callout stop">
+    <strong>Use restriction</strong>
+    <p>Public-safe documentation only. Operational authority belongs in the private control repository after review and approval.</p>
+  </aside>
+</header><section id="control-center" class="console-landing" aria-labelledby="control-center-title">
+  <div class="section-kicker">Operations console</div>
+  <h2 id="control-center-title">Inventory, Create, View, and Draft Enable/Disable</h2>
+  <p class="section-intro">This landing panel is a public-safe console surface. It displays placeholder inventory, drafts reviewed job JSON, and explains the private control repository boundary. It does not execute work.</p>
+  <div class="console-tabs" aria-label="Console shortcuts">
+    <a class="primary" href="#control-center">Inventory</a>
+    <a href="#create-job-draft">Create job draft</a>
+    <a href="#job-inventory">View jobs</a>
+    <a href="#server-inventory">View servers</a>
+    <a href="#enable-disable-draft">Draft enable/disable</a>
+    <a href="#script-register">Scripts</a>
+    <a href="#approval-evidence">Approvals</a>
+    <a href="#controlled-document">Document</a>
+  </div>
+  <div class="console-grid" id="inventory-summary">
+    <article class="console-card"><span>Servers</span><strong>1</strong><small>placeholder runner</small></article>
+    <article class="console-card"><span>Jobs</span><strong>3</strong><small>disabled examples</small></article>
+    <article class="console-card"><span>Scripts</span><strong>12</strong><small>Python public-safe examples</small></article>
+    <article class="console-card"><span>Execution</span><strong>OFF</strong><small>draft only</small></article>
+  </div>
+  <aside class="support-boundary-red">
+    <strong>Required support boundary</strong>
+    <p>If you are not familiar with Python or the Python runtime used by this repository, contact <code>StoragePythonTeam@</code> before editing scripts, builders, dispatchers, validators, or generated publication logic.</p>
+    <p>If you are not familiar with Git, GitHub, GitHub Enterprise, or GitOps, contact <code>StorageGitOPSTeam@</code> before editing orchestration, repository-control, schedule, branch, Pages, or release content.</p>
+  </aside>
+
+  <section id="create-job-draft" aria-labelledby="create-job-draft-title">
+    <h3 id="create-job-draft-title">Create job draft</h3>
+    <p>Generate reviewed JSON for a private control repository commit. This browser control does not write Git and does not execute work.</p>
+    <form class="console-form" onsubmit="return false;">
+      <div class="console-form-grid">
+        <label>Enabled state<select id="consoleEnabled"><option value="false" selected>false</option><option value="true">true</option></select></label>
+        <label>Server<select id="consoleServer"><option>example-runner-01</option><option value="label:role=orchestrator-runner">Any orchestrator runner</option></select></label>
+        <label>Job ID<input id="consoleJobId" value="example-daily-inventory"></label>
+        <label>Schedule type<select id="consoleScheduleType"><option>daily</option><option>interval</option><option>manual</option></select></label>
+        <label>Time / interval<input id="consoleScheduleValue" value="01:10"></label>
+        <label>Timezone<input id="consoleTimezone" value="America/New_York"></label>
+        <label>Mode<select id="consoleMode"><option>observe-only</option><option>publish-only</option><option>manual-approval-required</option></select></label>
+        <label class="console-span-2">Entrypoint<input id="consoleEntrypoint" value="scripts/examples/noop_receipt.py"></label>
+        <label>Timeout seconds<input id="consoleTimeout" value="1800"></label>
+        <label class="console-span-2">Working directory<input id="consoleWorkingDirectory" value="/opt/example-orchestrator"></label>
+        <label>Credential reference<input id="consoleCredential" value="none"></label>
+        <label class="console-span-2">Output path<input id="consoleOutputPath" value="/var/lib/example-orchestrator"></label>
+      </div>
+      <div class="console-tabs">
+        <button class="console-button primary" id="consoleGenerateJob" type="button">Generate job JSON</button>
+        <button class="console-button" id="consoleCopyJob" type="button">Copy JSON</button>
+      </div>
+      <textarea id="consoleJobJson" spellcheck="false" aria-label="Generated job JSON"></textarea>
+    </form>
+  </section>
+
+  <section id="job-inventory" aria-labelledby="job-inventory-title">
+    <h3 id="job-inventory-title">View jobs</h3>
+    <div class="data-table-wrap" role="region" aria-label="Public-safe job inventory" tabindex="0">
+      <table class="data-table">
+        <thead><tr><th scope="col">Job</th><th scope="col">Target</th><th scope="col">Schedule</th><th scope="col">State</th></tr></thead>
+        <tbody>
+          <tr><td><code>example-daily-inventory</code></td><td>example-runner-01</td><td>daily 01:10 America/New_York</td><td>disabled placeholder</td></tr>
+          <tr><td><code>example-pages-publication</code></td><td>example-runner-01</td><td>manual</td><td>disabled placeholder</td></tr>
+          <tr><td><code>example-manual-review</code></td><td>example-runner-01</td><td>manual</td><td>disabled placeholder</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="server-inventory" aria-labelledby="server-inventory-title">
+    <h3 id="server-inventory-title">View servers</h3>
+    <div class="data-table-wrap" role="region" aria-label="Public-safe server inventory" tabindex="0">
+      <table class="data-table">
+        <thead><tr><th scope="col">Server</th><th scope="col">Role</th><th scope="col">Timezone</th><th scope="col">State</th></tr></thead>
+        <tbody>
+          <tr><td><code>example-runner-01</code></td><td>orchestrator-runner</td><td>America/New_York</td><td>disabled placeholder</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="enable-disable-draft" aria-labelledby="enable-disable-draft-title">
+    <h3 id="enable-disable-draft-title">Draft enable/disable</h3>
+    <p>The public console can draft an enable/disable change. The private control repository commit is the authority.</p>
+    <pre><code>{
+  "change_type": "job-enabled-state",
+  "job_id": "example-daily-inventory",
+  "old_enabled": false,
+  "new_enabled": true,
+  "requires_review": true,
+  "requires_private_control_repo_commit": true
+}</code></pre>
+  </section>
+
+  <section id="script-register" aria-labelledby="script-register-title">
+    <h3 id="script-register-title">Scripts</h3>
+    <p>Public examples are Python-only and non-operational. Real scripts belong in the private control repository and remain disabled until reviewed.</p>
+  </section>
+
+  <section id="approval-evidence" aria-labelledby="approval-evidence-title">
+    <h3 id="approval-evidence-title">Approvals and SHA evidence</h3>
+    <p>Enablement requires a private control-repository commit, reviewer, approver, release SHA, and rollback reference.</p>
+  </section>
+
+  <div id="controlled-document" class="visually-hidden" aria-hidden="true">Controlled document begins below.</div>
+
+  <script>
+    (function () {
+      function value(id) { var node = document.getElementById(id); return node ? node.value : ""; }
+      function renderJob() {
+        var server = value("consoleServer");
+        var target = server.indexOf("label:") === 0 ? { label_selector: server.slice(6) } : { server_id: server };
+        var job = {
+          schema_version: "1.0",
+          job_id: value("consoleJobId").trim(),
+          display_name: value("consoleJobId").trim().replace(/-/g, " "),
+          enabled: value("consoleEnabled") === "true",
+          target: target,
+          schedule: {
+            type: value("consoleScheduleType"),
+            value: value("consoleScheduleValue").trim(),
+            timezone: value("consoleTimezone").trim(),
+            missed_run_policy: "skip"
+          },
+          execution: {
+            mode: value("consoleMode"),
+            entrypoint: value("consoleEntrypoint").trim(),
+            arguments: [],
+            working_directory: value("consoleWorkingDirectory").trim(),
+            credential_reference: value("consoleCredential").trim()
+          },
+          outputs: { root: value("consoleOutputPath").trim() },
+          policy: {
+            timeout_seconds: Number(value("consoleTimeout") || 1800),
+            concurrency: "forbid",
+            retry_count: 0
+          }
+        };
+        var output = document.getElementById("consoleJobJson");
+        if (output) output.value = JSON.stringify(job, null, 2);
+      }
+      var generate = document.getElementById("consoleGenerateJob");
+      if (generate) generate.addEventListener("click", renderJob);
+      var copy = document.getElementById("consoleCopyJob");
+      if (copy) copy.addEventListener("click", function () {
+        var output = document.getElementById("consoleJobJson");
+        if (output) { output.select(); document.execCommand("copy"); }
+      });
+      renderJob();
+    }());
+  </script>
+</section><details id="editing-workflow" class="editing-workflow">
+  <summary>How this controlled document is created and edited</summary>
+  <div class="editing-workflow-body">
+    <p><strong>The canonical repository supplies the Python engine, document contract, and reader theme. Every SOP, IOP, MOP, runbook, standard, design, plan, training package, catalog, or other controlled artifact is created as its own private repository and edited in that repository.</strong> The Pages site is the controlled reading surface; content changes occur through the repository so authorship, review, approval, and history remain attributable.</p>
+    <ol>
+      <li>Create a new private controlled-document repository with <strong>Use this template</strong>. Do not write an actual controlled document in the canonical engine/template repository.</li>
+      <li>Run <code>python -m iatdocs init</code> or point an approved AI agent to <code>AGENTS.md</code> and the machine-readable contract.</li>
+      <li>Set the document ID, owner, creator, repository, version, last-review date, next-review date, and effective date in <code>data/document.json</code>.</li>
+      <li>Edit controlled Markdown under <code>content</code> on a branch. Use a pull request for review and approval.</li>
+      <li>Record material releases in <code>data/revisions.json</code>, including editor, reviewer, approver, change summary, and supporting reference.</li>
+      <li>Run <code>python -m .\doc2210.cmd validate</code> and <code>python -m .\doc2210.cmd build --strict</code>.</li>
+      <li>After merge to <code>main</code>, the GHE workflow publishes the generated static site. Open browser tabs detect the newer build and display an update notice. Refreshing saves and restores the reader’s place.</li>
+      <li>The metrics command refreshes GHE repository size, recent edits, contributor percentages, word activity, and root-level Work Ledger integration records.</li>
+    </ol>
+    <p class="editing-note"><strong>Engine versus derived document:</strong> the canonical repository controls reusable compilation, presentation, behavior, schemas, and policy. Each derived document repository controls its own content, permissions, creator, revisions, Git history, Pages publication, and Work Ledger mappings.</p>
+  </div>
+</details><section id="document-intelligence" class="document-intelligence" aria-labelledby="document-intelligence-title">
+  <div class="intelligence-heading">
+    <div>
+      <div class="section-kicker">Reader-visible provenance</div>
+      <h2 id="document-intelligence-title">History, creator, and contribution activity</h2>
+    </div>
+    <span class="generation-pill generation-generated-placeholder">generated placeholder</span>
+  </div>
+  <p class="section-intro">Readers can see who created the controlled document, its governed revisions, recent Git edits, and each contributor’s share of measured word activity without opening GitHub Enterprise.</p>
+
+  <div class="intelligence-cards" aria-label="Document activity summary">
+    <article class="intelligence-card creator-card">
+      <span class="card-label">Original creator</span>
+      <strong>Document Steward</strong>
+      <small>@repository-admin · 2026-08-15<br><span class="work-ledger-id">Work Ledger: Not configured</span></small>
+    </article>
+    <article class="intelligence-card">
+      <span class="card-label">Contributors</span>
+      <strong class="metric-number" data-number="0">0</strong>
+      <small>Human Git authors in scope · 0 unmapped</small>
+    </article>
+    <article class="intelligence-card">
+      <span class="card-label">Human commits</span>
+      <strong class="metric-number" data-number="0">0</strong>
+      <small>Non-merge commits measured</small>
+    </article>
+    <article class="intelligence-card">
+      <span class="card-label">Words touched</span>
+      <strong class="metric-number" data-number="0">0</strong>
+      <small>Added + measured removed tokens</small>
+    </article>
+    <article class="intelligence-card">
+      <span class="card-label">Work Ledger mapping</span>
+      <strong><span class="metric-number" data-number="0">0</span> / <span class="metric-number" data-number="0">0</span></strong>
+      <small>0 contributor(s) unmapped</small>
+    </article>
+  </div>
+
+  <aside class="metric-note">
+    <strong>What the percentage means</strong>
+    <p>Public placeholder. Contribution metrics require a controlled history measurement run.</p>
+    <p><strong>Baseline:</strong> after initial commit · 7b54576cd809 · none</p>
+    <p><strong>Work Ledger rule:</strong> Repository activity evidence is not, by itself, a quality or performance rating.</p>
+  </aside>
+
+<div id="controlled-revisions" class="history-subsection" aria-labelledby="controlled-revisions-title">
+  <div class="subsection-heading">
+    <div>
+      <div class="section-kicker">Governed document record</div>
+      <h3 id="controlled-revisions-title">Controlled revision history</h3>
+    </div>
+    <div class="count-pill">1 revision</div>
+  </div>
+  <p class="section-intro">This table records material document revisions, review, approval, and the release reference. It is distinct from the automated Git activity ledger below.</p>
+
+  <div class="data-table-wrap" role="region" aria-label="Controlled revision history table" tabindex="0">
+    <table class="data-table revision-table">
+      <thead>
+        <tr>
+          <th scope="col">Version</th>
+          <th scope="col">Date</th>
+          <th scope="col">Editor</th>
+          <th scope="col">Review and approval</th>
+          <th scope="col">Material change</th>
+          <th scope="col">Reference</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="current-revision">
+            <td>
+              <strong>v0.01</strong>
+<span class="revision-status">Draft</span><span class="current-pill">Current</span>            </td>
+            <td><time datetime="2026-08-15">2026-08-15</time></td>
+            <td>Document Steward</td>
+            <td>
+              <span class="cell-label">Reviewed</span> Template build and public-surface validation<br>
+              <span class="cell-label">Approved</span> Not approved for operational execution
+            </td>
+            <td>Initial template-based split-repository design: public docs reader, operations-console template, and private Orchestrator control/data repository.</td>
+            <td>
+template:ddd1f84b8e33 previous:7b54576cd809            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+  <div id="contribution-share" class="history-subsection" aria-labelledby="contribution-share-title">
+    <div class="subsection-heading">
+      <div>
+        <div class="section-kicker">Comparable activity</div>
+        <h3 id="contribution-share-title">Contribution share</h3>
+      </div>
+      <div class="count-pill"><span class="metric-number" data-number="0">0</span> words touched</div>
+    </div>
+    <p class="section-intro">The ranking is generated from Git history for document-owned paths. Theme files, generated metric files, merge commits, recognized bot accounts, and first-change removals of inherited template text are excluded from share.</p>
+
+    <div class="empty-state">
+      <strong>Contribution metrics have not been generated.</strong>
+      <p>Run <code>python -m iatdocs metrics --apply</code> after the repository has Git history.</p>
+    </div>
+  </div>
+
+  <div id="recent-edits" class="history-subsection" aria-labelledby="recent-edits-title">
+    <div class="subsection-heading">
+      <div>
+        <div class="section-kicker">Git activity ledger</div>
+        <h3 id="recent-edits-title">Recent edits</h3>
+      </div>
+      <div class="count-pill">0 displayed</div>
+    </div>
+    <p class="section-intro">This page summarizes recent non-merge Git commits. The complete repository history remains the authoritative technical record.</p>
+
+    <div class="data-table-wrap" role="region" aria-label="Recent edit activity table" tabindex="0">
+      <table class="data-table edit-table">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Contributor</th>
+            <th scope="col">Commit change</th>
+            <th scope="col">What changed</th>
+            <th scope="col">Words</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr><td colspan="5">No measured Git edits are available yet.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+      <article id="manualContent" class="manual-content">
+        <h2 id="1-control-center-first" class="document-heading level-2">1. Control Center First</h2>
+<p class="lead">The public documentation reader opens with the control-console concept: inventory, create job draft, view jobs, view servers, draft enable/disable, scripts, approvals, receipts, and then the long-form controlled document.</p>
+<aside class="callout control">
+<strong>Split-repository rule</strong>
+<p>The documentation repository publishes a controlled reader and public-safe draft tools. The private control repository owns the real server registry, job registry, script inventory, approvals, releases, receipts, and enable/disable state.</p>
+</aside>
+<h2 id="2-why-the-split-exists" class="document-heading level-2">2. Why the Split Exists</h2>
+<p>Operational sprawl happens when scripts, local timers, manual launch patterns, receipts, and small utility jobs grow across different servers without one reviewed source of truth. The resulting questions are basic but difficult to answer:</p>
+<table>
+<thead>
+<tr>
+  <th>Question</th>
+  <th>Required source of truth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Which server owns the job?</td>
+  <td>Private server registry</td>
+</tr>
+<tr>
+  <td>When should it run?</td>
+  <td>Private job schedule</td>
+</tr>
+<tr>
+  <td>What script is allowed?</td>
+  <td>Private script register</td>
+</tr>
+<tr>
+  <td>Who approved it?</td>
+  <td>Private approval record</td>
+</tr>
+<tr>
+  <td>What SHA authorized it?</td>
+  <td>Private release record</td>
+</tr>
+<tr>
+  <td>Did it run?</td>
+  <td>Receipt and status record</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-repository-responsibilities" class="document-heading level-2">3. Repository Responsibilities</h2>
+<table>
+<thead>
+<tr>
+  <th>Repository</th>
+  <th>Purpose</th>
+  <th>Public or private</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>ITOPS-IaT-Storage-Orchestrator</code></td>
+  <td>Controlled documentation reader, public-safe console explanation, synthetic examples, and draft JSON generator.</td>
+  <td>Public-safe</td>
+</tr>
+<tr>
+  <td><code>ITOPS-IaT-Operations-Console-Template</code></td>
+  <td>Reusable operations-console template for inventory, create, view, enable/disable draft, scripts, approvals, and receipts.</td>
+  <td>Public-safe template</td>
+</tr>
+<tr>
+  <td><code>ITOPS-IaT-Storage-Orchestrator-Control</code></td>
+  <td>Real desired state: servers, jobs, scripts, schedules, approvals, receipts, release records, and sanitized exports.</td>
+  <td>Private</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-operations-console-pattern" class="document-heading level-2">4. Operations Console Pattern</h2>
+<p>The operations console template must put the active work surface at the top:</p>
+<ol>
+<li>Inventory.</li>
+<li>Create job draft.</li>
+<li>View jobs.</li>
+<li>View servers.</li>
+<li>Draft enable/disable.</li>
+<li>Scripts.</li>
+<li>Approvals.</li>
+<li>Receipts.</li>
+<li>Controlled document.</li>
+</ol>
+<p>The console can generate change JSON. It must not directly execute server-side work from a browser.</p>
+<h2 id="5-enable-and-disable-boundary" class="document-heading level-2">5. Enable and Disable Boundary</h2>
+<p>A visible enable/disable control is useful only as a draft generator. The real control is a reviewed private-repository commit.</p>
+<pre><code class="language-json">{
+  &quot;change_type&quot;: &quot;job-enabled-state&quot;,
+  &quot;job_id&quot;: &quot;example-daily-inventory&quot;,
+  &quot;old_enabled&quot;: false,
+  &quot;new_enabled&quot;: true,
+  &quot;requires_review&quot;: true,
+  &quot;requires_private_control_repo_commit&quot;: true
+}
+</code></pre>
+<h2 id="6-private-control-repository-layout" class="document-heading level-2">6. Private Control Repository Layout</h2>
+<pre><code class="language-text">servers/
+jobs/
+scripts/
+orchestrator/
+schemas/
+approvals/
+releases/
+receipts/
+exports/public/
+</code></pre>
+<p>The future dispatcher reads the private control repository, not the public Pages site.</p>
+<h2 id="7-python-only-implementation-rule" class="document-heading level-2">7. Python-Only Implementation Rule</h2>
+<aside class="support-boundary-red">
+<strong>Required support boundary</strong>
+<p>If you are not familiar with Python or the Python runtime used by this repository, contact <code>StoragePythonTeam@</code> before editing scripts, builders, dispatchers, validators, or generated publication logic.</p>
+<p>If you are not familiar with Git, GitHub, GitHub Enterprise, or GitOps, contact <code>StorageGitOPSTeam@</code> before editing orchestration, repository-control, schedule, branch, Pages, or release content.</p>
+</aside>
+<p>PowerShell is not the implementation language for this repository pattern. Operational logic is Python-first.</p>
+<h2 id="8-ansible-relationship" class="document-heading level-2">8. Ansible Relationship</h2>
+<p>This is not an Ansible-based system. The foundation is Git-governed orchestration: server records, job records, schedules, policy, validation, dispatch, and receipts.</p>
+<p>Ansible can become one optional executor lane later, especially for idempotent configuration tasks. It is not the control plane.</p>
+<h2 id="9-approval-and-sha-evidence" class="document-heading level-2">9. Approval and SHA Evidence</h2>
+<p>Every material change should identify:</p>
+<table>
+<thead>
+<tr>
+  <th>Evidence</th>
+  <th>Required value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Documentation source SHA</td>
+  <td>Commit in the public docs repository</td>
+</tr>
+<tr>
+  <td>Console template SHA</td>
+  <td>Commit in the operations-console template repository</td>
+</tr>
+<tr>
+  <td>Control source SHA</td>
+  <td>Commit in the private control repository</td>
+</tr>
+<tr>
+  <td>Approver</td>
+  <td>Person or role approving the change</td>
+</tr>
+<tr>
+  <td>Approval record</td>
+  <td>Pull request, issue, ticket, or controlled record</td>
+</tr>
+<tr>
+  <td>Effective state</td>
+  <td>Enabled or disabled</td>
+</tr>
+<tr>
+  <td>Rollback</td>
+  <td>Prior known-good SHA and restoration method</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-next-implementation-gates" class="document-heading level-2">10. Next Implementation Gates</h2>
+<ul>
+<li>Build and publish the documentation reader.</li>
+<li>Create the operations-console template.</li>
+<li>Create the private Orchestrator control repository from the console template.</li>
+<li>Keep example jobs disabled.</li>
+<li>Add real private server and job data only to the private control repository.</li>
+<li>Add sanitized exports from the private repo to the public docs reader only after review.</li>
+</ul>
+
+      </article>
+
+      <footer>
+        <p>Copyright (c) 2026 Matthew S. Novak. All Rights Reserved.</p>
+        <p>ITOPS-IAT-STORAGE-ORCH-DOC-0001 · v0.01 · 2210Docs 0.08.2</p>
+        <p>Contribution evidence 7b54576cd809 · generated 2026-08-15T17:25:51.618927+00:00</p>
+      </footer>
+    </main>
+  </div>
+
+  <button id="backToTop" class="backtotop" type="button" aria-label="Back to top">↑</button>
+  <script src="assets/js/manual.js" defer></script>
+</body>
+</html>

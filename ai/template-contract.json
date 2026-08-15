@@ -1,0 +1,275 @@
+{
+  "schema_version": 2,
+  "contract_id": "ITOPS-IAT-2210-DOCS-ENGINE-CONTRACT",
+  "product": {
+    "name": "2210Docs",
+    "command": "iatdocs",
+    "engine_version": "0.08.2",
+    "implementation": "Python-native static controlled-document compiler",
+    "python": ">=3.11",
+    "framework_policy": "Do not add MkDocs, Jekyll, Sphinx, Docusaurus, Docsify, Antora, VitePress, Starlight, Hugo, or another documentation framework as the build engine.",
+    "low_level_components": [
+      "Jinja2 for controlled HTML templating",
+      "Mistune for Markdown parsing and rendering",
+      "Python standard library for configuration, validation, local serving, manifests, hashing, and orchestration"
+    ],
+    "clean_room_policy": "Study public product capabilities, workflows, and documented behavior. Do not copy source code, templates, CSS, JavaScript, branding, proprietary schemas, or distinctive text from other products."
+  },
+  "template_version": "v0.08.2",
+  "template_role": "canonical Python engine, GS-2210 starter repository, and conformance contract",
+  "default_repository_visibility": "private",
+  "publication": {
+    "source_branch": "main",
+    "generated_artifact": "site/",
+    "reader_surface": "GitHub Enterprise Pages",
+    "deployment": "custom GitHub Actions workflow or approved publication of the prebuilt site/ artifact",
+    "editing_source": "repository branch and pull request",
+    "source_of_truth_model": {
+      "reading": "live authenticated Pages site",
+      "editing_and_evidence": "Git repository, pull requests, approvals, revision register, and build receipts"
+    }
+  },
+  "operating_modes": {
+    "engine_maintenance": "Change the Python compiler, controlled theme, contracts, schemas, profiles, validators, migration logic, or workflows while keeping the canonical seed generic.",
+    "derived_document": "Create or edit a separate private repository for one controlled artifact; do not convert the canonical engine repository into that artifact."
+  },
+  "required_root_files": [
+    "README.md",
+    "AGENTS.md",
+    "AI-ENTRYPOINT.md",
+    "AI-GENERATION-CONTRACT.md",
+    "GHE-WEB-TEMPLATE-STANDARD.md",
+    "AUTHORING-GUIDE.md",
+    "2210-DOCUMENT-PROFILES.md",
+    "ARCHITECTURE.md",
+    "PRODUCT-RECON.md",
+    "CLEAN-ROOM-RECON-RULES.md",
+    "ROADMAP.md",
+    "NAME-DECISION.md",
+    "SECURITY.md",
+    "PUBLISHING.md",
+    "CONTRIBUTING.md",
+    "GOVERNANCE.md",
+    "NO-LICENSE.md",
+    "THIRD-PARTY-NOTICES.md",
+    "TEMPLATE_VERSION",
+    "pyproject.toml",
+    "requirements.txt",
+    "iatdocs.toml",
+    "source-material-register.json",
+    "ai/template-contract.json",
+    "ai/document-profiles.json",
+    "section-library/2210-master.md",
+    "section-library/modules.json",
+    "prompts/POINT-YOUR-AI-HERE.md"
+  ],
+  "document_owned_paths": [
+    "content/",
+    "data/document.json",
+    "data/revisions.json",
+    "data/contribution-config.json",
+    "source-material-register.json",
+    "work-ledger/"
+  ],
+  "engine_owned_paths": [
+    "src/iatdocs/",
+    "theme/",
+    "schemas/",
+    "ai/",
+    "section-library/",
+    "starters/",
+    "prompts/",
+    "tests/",
+    "iatdocs.toml",
+    "pyproject.toml",
+    "requirements.txt",
+    ".github/workflows/"
+  ],
+  "compiler_contract": {
+    "pipeline": [
+      "load iatdocs.toml",
+      "validate repository structure and controlled data",
+      "scan Markdown and raw HTML for unsafe constructs",
+      "parse Markdown and semantic callouts",
+      "assign stable unique heading anchors",
+      "render the controlled Jinja2 reader",
+      "generate search index, source map, build ID, manifest, and receipt",
+      "validate generated HTML",
+      "emit the static site/ artifact"
+    ],
+    "commands": {
+      "doctor": "python -m .\doc2210.cmd doctor",
+      "profiles": "python -m .\doc2210.cmd profiles",
+      "init": "python -m .\doc2210.cmd init --profile PROFILE --document-id ID --title TITLE --source-repository OWNER/REPOSITORY",
+      "build": "python -m .\doc2210.cmd build --strict",
+      "serve": "python -m .\doc2210.cmd serve --open",
+      "validate": "python -m .\doc2210.cmd validate --built",
+      "metrics": "python -m .\doc2210.cmd metrics --apply",
+      "release": "python -m .\doc2210.cmd release --require-ghe",
+      "migrate": "python -m python -m iatdocs --repo TARGET migrate --engine-source CANONICAL-ENGINE --apply"
+    },
+    "output_files": [
+      "site/index.html",
+      "site/404.html",
+      "site/search-index.json",
+      "site/site-version.json",
+      "site/source-map.json",
+      "site/build-manifest.json",
+      "site/build-receipt.txt",
+      "site/.nojekyll"
+    ]
+  },
+  "reader_contract": {
+    "direct_entry": true,
+    "splash": false,
+    "sticky_header": true,
+    "left_navigation": true,
+    "repository_size_display": "plain text in upper-left header",
+    "review_dates_display": "plain text in upper-left header",
+    "graphic_placement": "fixed upper-right below header",
+    "graphic_source": "approved central asset referenced only by theme/assets/css/manual.css",
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "full_section_filtering": true,
+    "automatic_furthest_read": true,
+    "return_marker": "translucent red marker while reader is above furthest position",
+    "bookmark_control": "red Bookmark N% split control",
+    "bookmark_limit": 20,
+    "bookmark_storage": "browser-local storage scoped to document identity",
+    "bookmark_editable_fields": [
+      "label",
+      "reference",
+      "note",
+      "saved position"
+    ],
+    "bookmark_reference_examples": [
+      "CHG",
+      "INC",
+      "RITM",
+      "TASK",
+      "PR",
+      "issue",
+      "other controlled record"
+    ],
+    "update_notice": "Update available — refresh your browser",
+    "refresh_restores_position": true,
+    "edit_menu_targets": [
+      "content/index.md",
+      "data/document.json",
+      "data/revisions.json"
+    ],
+    "page_visible_provenance": [
+      "creator",
+      "controlled revisions",
+      "recent edits",
+      "contribution metrics",
+      "Work Ledger mapping status"
+    ],
+    "prohibited_reader_controls": [
+      "splash",
+      "print",
+      "export",
+      "download document",
+      "detached copy package"
+    ]
+  },
+  "content_contract": {
+    "generic_template_title": "GS-2210 Controlled Document",
+    "live_seed_must_remain_generic": true,
+    "synthetic_examples_location": "examples/",
+    "module_source": "section-library/2210-master.md",
+    "mandatory_control_modules": [
+      2,
+      29,
+      30,
+      31,
+      32
+    ],
+    "separate_creator_from_contributors": true,
+    "contribution_metric_use": "repository activity evidence only; not a standalone quality or personnel rating",
+    "profile_source": "ai/document-profiles.json",
+    "profile_count": 22,
+    "module_count": 32,
+    "profile_generator": "python -m iatdocs init",
+    "worked_example_policy": {
+      "live_seed": "prohibited",
+      "synthetic_examples": "permitted only under examples/ and never rendered by the canonical Pages seed",
+      "rule": "The canonical engine must remain subject-neutral and must not retain inherited worked-procedure titles, facts, commands, permissions, endpoints, or operational authority."
+    }
+  },
+  "source_material_contract": {
+    "register": "source-material-register.json",
+    "classifications": [
+      "authoritative-source",
+      "approved-operational-source",
+      "supporting-reference",
+      "worked-example",
+      "layout-only-example",
+      "superseded-source",
+      "excluded-restricted",
+      "unverified"
+    ],
+    "attachment_is_not_automatically_authoritative": true,
+    "attachment_is_not_automatically_an_example": true,
+    "unverified_items_cannot_supply_release_authority": true
+  },
+  "security_contract": {
+    "forbid": [
+      "credentials",
+      "secrets",
+      "tokens",
+      "private keys",
+      "transient tokenized URLs",
+      "protected information",
+      "unnecessary live endpoints",
+      "unnecessary internal inventories",
+      "active HTML in Markdown",
+      "inline event handlers",
+      "javascript URLs"
+    ],
+    "sanitize_examples_and_attachments": true,
+    "document_is_not_authorization": true
+  },
+  "ai_read_order": [
+    "AGENTS.md",
+    "AI-ENTRYPOINT.md",
+    "AI-GENERATION-CONTRACT.md",
+    "GHE-WEB-TEMPLATE-STANDARD.md",
+    "ai/template-contract.json",
+    "ai/document-profiles.json",
+    "2210-DOCUMENT-PROFILES.md",
+    "AUTHORING-GUIDE.md",
+    "section-library/2210-master.md",
+    "data/document.json",
+    "content/index.md"
+  ],
+  "validation": {
+    "canonical": [
+      "python -m .\doc2210.cmd doctor",
+      "python -m .\doc2210.cmd build --strict",
+      "python -m .\doc2210.cmd validate --built",
+      "python -m unittest discover -s tests -v"
+    ],
+    "derived_release": [
+      "python -m .\doc2210.cmd metrics --apply --require-ghe",
+      "python -m .\doc2210.cmd build --release --strict"
+    ],
+    "profile_generation_dry_run": "python -m python -m iatdocs --repo DERIVED-REPO init --profile iop --document-id ID --title TITLE --source-repository OWNER/REPOSITORY"
+  },
+  "profile_starters_path": "starters/",
+  "synthetic_examples_path": "examples/",
+  "controlled_contract_paths": [
+    "AGENTS.md",
+    "AI-ENTRYPOINT.md",
+    "AI-GENERATION-CONTRACT.md",
+    "GHE-WEB-TEMPLATE-STANDARD.md",
+    ".github/copilot-instructions.md",
+    "ai/template-contract.json",
+    "ai/document-profiles.json",
+    "schemas/",
+    "section-library/",
+    "prompts/"
+  ]
+}

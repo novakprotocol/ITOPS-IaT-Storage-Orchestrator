@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:itops:2210:derived-document-intake:v1",
+  "title": "GS-2210 Derived Controlled Document Intake",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_profile",
+    "document_id",
+    "title",
+    "owner",
+    "creator",
+    "source_repository",
+    "purpose",
+    "scope",
+    "source_materials"
+  ],
+  "properties": {
+    "document_profile": {
+      "type": "string",
+      "enum": [
+        "comprehensive-2210",
+        "sop",
+        "iop",
+        "mop",
+        "implementation-plan",
+        "runbook",
+        "work-instruction",
+        "incident-playbook",
+        "emergency-procedure",
+        "technical-standard",
+        "system-design",
+        "architecture-decision-record",
+        "test-validation-plan",
+        "recovery-continuity-plan",
+        "training-job-aid",
+        "governance-catalog",
+        "service-catalog-entry",
+        "data-reporting-procedure",
+        "security-control-plan",
+        "monitoring-observability-plan",
+        "retirement-decommission-plan",
+        "knowledge-article"
+      ]
+    },
+    "document_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 2
+    },
+    "steward": {
+      "type": "string"
+    },
+    "creator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "account"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "work_ledger_id": {
+          "type": "string"
+        },
+        "position_number": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "source_repository": {
+      "type": "string",
+      "pattern": "^[^/]+/[^/]+$"
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 10
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 10
+    },
+    "source_materials": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "required_modules": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 32
+      }
+    },
+    "optional_modules_to_include": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 32
+      }
+    },
+    "known_authorities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "known_risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "known_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_approvals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ticket_or_reference": {
+      "type": "string"
+    },
+    "unknowns_or_blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "profile_mode": {
+      "type": "string",
+      "enum": [
+        "minimum",
+        "recommended",
+        "comprehensive"
+      ],
+      "default": "recommended"
+    }
+  }
+}

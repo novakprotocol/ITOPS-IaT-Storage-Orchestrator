@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "id": "SRC-001",
+      "title": "Controlled document template",
+      "type": "repository",
+      "classification": "verified-public-safe-template",
+      "source_commit": "ddd1f84b8e33eb2d4ca042bf60b7dbd2d487f855",
+      "use": "Reader shell, theme, compiler, validation behavior"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+<header id="manual-top" class="cover">
+  <div class="eyebrow">{{ doc.document_type | e }} · {{ doc.document_id | e }}</div>
+  <h1>{{ doc.title | e }}</h1>
+  <h2>{{ doc.subtitle | e }}</h2>
+  <p class="lead">{{ doc.summary | e }}</p>
+
+  <div class="badges" aria-label="Document status">
+    <span class="badge type">{{ doc.document_type | e }}</span>
+    {% if doc.document_profile %}<span class="badge profile">{{ doc.document_profile | e }}</span>{% endif %}
+    <span class="badge">{{ doc.document_id | e }}</span>
+    <span class="badge">{{ doc.version | e }}</span>
+    <span class="badge draft">{{ doc.status | e }}</span>
+    <span class="badge private">{{ doc.visibility | e }}</span>
+  </div>
+
+  <dl class="document-metadata">
+    <div><dt>Creator</dt><dd>{{ doc.creator.name | e }}{% if doc.creator.account %} <span class="account">@{{ doc.creator.account | e }}</span>{% endif %}{% if doc.creator.work_ledger_id %}<small class="work-ledger-id">Work Ledger: {{ doc.creator.work_ledger_id | e }}</small>{% endif %}</dd></div>
+    <div><dt>Created</dt><dd>{{ doc.creator.created_at | e }}</dd></div>
+    <div><dt>Work Ledger</dt><dd>{{ doc.creator.work_ledger_id | e }}{% if doc.creator.position_number %} · Position {{ doc.creator.position_number | e }}{% endif %}</dd></div>
+    <div><dt>Profile</dt><dd>{{ (doc.document_profile or doc.document_type) | e }}</dd></div>
+    <div><dt>Service / system</dt><dd>{{ (doc.service_or_system or "Not recorded") | e }}</dd></div>
+    <div><dt>Audience</dt><dd>{{ (doc.audience or "Not recorded") | e }}</dd></div>
+    <div><dt>Owner</dt><dd>{{ doc.owner | e }}</dd></div>
+    <div><dt>Document steward</dt><dd>{{ doc.steward | e }}</dd></div>
+    <div><dt>Approval authority</dt><dd>{{ (doc.approval_authority or "Not recorded") | e }}</dd></div>
+    <div><dt>Classification</dt><dd>{{ doc.classification | e }}{% if doc.sensitivity %}<small>{{ doc.sensitivity | e }}</small>{% endif %}</dd></div>
+    <div><dt>Effective date</dt><dd>{{ doc.effective_date | e }}</dd></div>
+    {% if doc.last_review_date %}<div><dt>Last review</dt><dd>{{ doc.last_review_date | e }}</dd></div>{% endif %}
+    <div><dt>Next review</dt><dd>{{ doc.review_date | e }}{% if doc.review_cycle %}<small>{{ doc.review_cycle | e }}</small>{% endif %}</dd></div>
+    <div><dt>Supersedes</dt><dd>{{ (doc.supersedes or "None recorded") | e }}</dd></div>
+    <div><dt>Records location</dt><dd>{{ (doc.records_location or "Not recorded") | e }}</dd></div>
+    <div><dt>Source repository</dt><dd>{% if repository_url %}<a href="{{ repository_url | e }}" target="_blank" rel="noopener">{{ doc.source_repository | e }}</a>{% else %}{{ doc.source_repository | e }}{% endif %}</dd></div>
+  </dl>
+
+  {% if doc.use_restriction %}
+  <aside class="callout stop">
+    <strong>Use restriction</strong>
+    <p>{{ doc.use_restriction | e }}</p>
+  </aside>
+  {% endif %}
+</header>

@@ -1,0 +1,53 @@
+[engine]
+name = "2210Docs"
+version = "0.08.2"
+schema_version = 1
+
+[site]
+title = "ITOPS IaT Storage Orchestrator"
+description = "Controlled documentation compiled from repository Markdown and JSON source."
+language = "en"
+base_path = "/"
+
+[paths]
+content_dir = "content"
+data_dir = "data"
+theme_dir = "theme"
+output_dir = "site"
+attachments_dir = "content/attachments"
+document_data = "data/document.json"
+repository_data = "data/repository.json"
+revisions_data = "data/revisions.json"
+contributions_data = "data/contributions.json"
+source_register = "source-material-register.json"
+
+[build]
+mode = "single-manual"
+content_files = ["index.md"]
+clean_output = true
+copy_attachments = true
+emit_search_index = true
+emit_source_map = true
+emit_manifest = true
+allow_raw_html = true
+template = "manual.html"
+
+[reader]
+bookmark_limit = 20
+update_check_seconds = 60
+watermark_url = "../brand/watermark.svg"
+
+[validation]
+forbidden_visible_text = []
+forbidden_reader_controls = ["Print", "Export", "Download document"]
+release_placeholders = [
+  "CONFIGURE-",
+  "Configure ",
+  "YYYY-MM-DD",
+  "OWNER/NEW-2210-DOCUMENT-REPOSITORY",
+  "SELECT PROFILE",
+  "Approval pending",
+  "reviewer pending"
+]
+required_data_files = ["document.json", "repository.json", "revisions.json", "contributions.json"]
+require_h2_sections = true
