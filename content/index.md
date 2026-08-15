@@ -71,3 +71,27 @@ A receipt proves what happened. Every future execution should record job id, ser
 ## 8. Next Implementation Step
 
 The next implementation step is private only: replace placeholders in the private control repository with real server and job records, keep all jobs disabled, and require approval records before any future runner reads the repo.
+
+<!-- CONTROLLED_PAGES_TEMPLATE_V0_08_10_BASELINE -->
+
+## Controlled Document Pages Template V0.08.10 Alignment
+
+<p class="lead">This repository is aligned to the controlled-document Pages template baseline requested for the Orchestrator model. The private template is used as the build authority, while only public-safe reader output and provenance metadata are committed here.</p>
+
+| Control | Current position |
+|---|---|
+| Template repository | `novakprotocol/ITOPS-IaT-2210-Controlled-Document-Pages-Template` |
+| Template version | `v0.08.10` |
+| Template source SHA | `dd89c933bea1c4a49b87fa4800ee8f5582c87760` |
+| Public template engine source committed here | No |
+| Implementation language | Python only |
+| PowerShell implementation | Not used |
+| Execution enabled | No |
+| Server mutation | No |
+| Private catalog import | No |
+
+<aside class="callout control">
+<strong>Authority boundary</strong>
+<p>The public documentation reader displays the control model and redacted state. The private control repository remains the authority for real servers, jobs, scripts, approvals, releases, receipts, and enabled state.</p>
+</aside>
+

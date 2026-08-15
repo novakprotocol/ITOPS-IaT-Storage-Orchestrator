@@ -6,3 +6,10 @@ __pycache__/
 *.pyo
 *.pyd
 .pytest_cache/
+
+runtime/
+secrets/
+receipts/private/
+*.vault
+.env
+.env.*
