@@ -95,3 +95,23 @@ The next implementation step is private only: replace placeholders in the privat
 <p>The public documentation reader displays the control model and redacted state. The private control repository remains the authority for real servers, jobs, scripts, approvals, releases, receipts, and enabled state.</p>
 </aside>
 
+<!-- CURRENT_TEMPLATE_BASELINE_START -->
+## Current Controlled Template Baseline
+
+| Control | Current position |
+|---|---|
+| Template repository | `novakprotocol/ITOPS-IaT-2210-Controlled-Document-Pages-Template` |
+| Template version | `v0.08.10` |
+| Current template SHA | `25a92a0dc1c352b016eec8d84c4a2115138a5349` |
+| Public template engine source committed here | No |
+| Implementation language | Python only |
+| PowerShell implementation | Not used |
+| Execution enabled | No |
+| Server mutation | No |
+| Private catalog import | No |
+
+<aside class="callout control">
+<strong>Authority boundary</strong>
+<p>The public documentation reader displays the control model and redacted state. The private control repository remains the authority for real servers, jobs, scripts, approvals, releases, receipts, and enabled state.</p>
+</aside>
+<!-- CURRENT_TEMPLATE_BASELINE_END -->

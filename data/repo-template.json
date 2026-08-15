@@ -4,13 +4,14 @@
   "target_role": "docs-reader",
   "template_repository": "novakprotocol/ITOPS-IaT-2210-Controlled-Document-Pages-Template",
   "template_ref": "main",
-  "template_sha": "dd89c933bea1c4a49b87fa4800ee8f5582c87760",
+  "template_sha": "25a92a0dc1c352b016eec8d84c4a2115138a5349",
   "template_version": "v0.08.10",
-  "applied_at_utc": "2026-08-15T20:20:03.783547+00:00",
+  "applied_at_utc": "2026-08-15T20:57:03.166408+00:00",
   "template_engine_committed_to_public_repo": false,
   "python_only": true,
   "powershell_used": false,
   "execution_enabled": false,
   "server_mutation": false,
-  "source_catalog_data_imported": false
+  "source_catalog_data_imported": false,
+  "dynamic_current_template_head": true
 }
