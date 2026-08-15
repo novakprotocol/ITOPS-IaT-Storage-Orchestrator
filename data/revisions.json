@@ -5,10 +5,10 @@
       "version": "v0.01",
       "date": "2026-08-15",
       "editor": "Document Steward",
-      "reviewer": "Template build and public-surface validation",
+      "reviewer": "Template build, public audit, and Pages validation",
       "approver": "Not approved for operational execution",
-      "summary": "Initial template-based split-repository design: public docs reader, operations-console template, and private Orchestrator control/data repository.",
-      "reference": "template:ddd1f84b8e33 previous:7b54576cd809",
+      "summary": "Added approval queue, running-now status, receipt browser, failures, dispatcher health, and release SHA evidence.",
+      "reference": "docs:57b7eb9bfc54 ops:2c507b266bab control:c088d8cf7e30",
       "reference_url": "",
       "status": "Draft"
     }

@@ -3,11 +3,19 @@
   "items": [
     {
       "id": "SRC-001",
-      "title": "Controlled document template",
+      "title": "Operations console template",
       "type": "repository",
       "classification": "verified-public-safe-template",
-      "source_commit": "ddd1f84b8e33eb2d4ca042bf60b7dbd2d487f855",
-      "use": "Reader shell, theme, compiler, validation behavior"
+      "source_commit": "2c507b266babfa55325646e719208b459a2aac32",
+      "use": "Approval/runtime console pattern"
+    },
+    {
+      "id": "SRC-002",
+      "title": "Private control repository",
+      "type": "repository",
+      "classification": "redacted-public-summary-only",
+      "source_commit": "c088d8cf7e30feffa03cf4cc6ec0f7a7da6ce9bc",
+      "use": "Private authority summarized through public-safe placeholder data"
     }
   ]
 }

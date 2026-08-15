@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Defines the documentation reader, control-console boundary, private control/data repository split, runner registry, job registry, script register, approval evidence, and Python-only implementation rule.">
-  <meta name="manual-build-id" content="52e2ba277d479cb4249f">
+  <meta name="description" content="Adds approval queue, running-now, receipts, failures, dispatcher health, release SHA evidence, and private control repository authority to the controlled reader.">
+  <meta name="manual-build-id" content="c1abc3954985f2f00395">
   <meta name="generator" content="2210Docs 0.08.2">
   <title>ITOPS-IaT-Storage-Orchestrator — CONTROLLED DESIGN DOCUMENT v0.01</title>
   <script>
@@ -26,7 +26,7 @@
   data-document-version="v0.01"
   data-template-version="0.08.2-derived"
   data-engine-version="0.08.2"
-  data-build-id="52e2ba277d479cb4249f"
+  data-build-id="c1abc3954985f2f00395"
   data-update-endpoint="site-version.json"
   data-bookmark-limit="20"
   data-update-check-seconds="60"
@@ -34,7 +34,7 @@
   <a class="skip-link" href="#manualContent">Skip to document content</a>
 
   <header class="topbar" aria-label="Document controls">
-    <div class="repo-facts" title="Repository: ITOPS-IaT-Storage-Orchestrator · Source: GitHub repository metadata via authenticated CLI · Last measured: 2026-08-15T17:25:51.618569+00:00 · Policy: Under 1 GiB healthy; 1-5 GiB review; 5 GiB or larger corrective action">
+    <div class="repo-facts" title="Repository: ITOPS-IaT-Storage-Orchestrator · Source: GitHub repository metadata via authenticated CLI · Last measured: 2026-08-15T18:25:08.343337+00:00 · Policy: Under 1 GiB healthy; 1-5 GiB review; 5 GiB or larger corrective action">
       <span>GHE repo size: <strong>108 KiB</strong></span>
       <span>Last review: <strong>2026-08-15</strong></span>
       <span>Review due: <strong>2027-08-15</strong></span>
@@ -45,9 +45,9 @@
     <details id="editMenu" class="edit-menu">
       <summary>Edit</summary>
       <div class="edit-menu-panel" role="menu" aria-label="Repository edit links">
-          <a id="editSourceLink" role="menuitem" href="https://example.invalid/ITOPS-IaT-Storage-Orchestrator/edit/main/content/index.md" target="_blank" rel="noopener">Edit document</a>
-          <a id="editControlLink" role="menuitem" href="https://example.invalid/ITOPS-IaT-Storage-Orchestrator/edit/main/data/document.json" target="_blank" rel="noopener">Edit document control</a>
-          <a id="editRevisionsLink" role="menuitem" href="https://example.invalid/ITOPS-IaT-Storage-Orchestrator/edit/main/data/revisions.json" target="_blank" rel="noopener">Edit revision history</a>
+          <a id="editSourceLink" role="menuitem" href="https://github.com/ITOPS-IaT-Storage-Orchestrator/edit/main/content/index.md" target="_blank" rel="noopener">Edit document</a>
+          <a id="editControlLink" role="menuitem" href="https://github.com/ITOPS-IaT-Storage-Orchestrator/edit/main/data/document.json" target="_blank" rel="noopener">Edit document control</a>
+          <a id="editRevisionsLink" role="menuitem" href="https://github.com/ITOPS-IaT-Storage-Orchestrator/edit/main/data/revisions.json" target="_blank" rel="noopener">Edit revision history</a>
       </div>
     </details>
     <button id="readingButton" class="reading-primary" type="button" title="Open the first numbered document section">Read section 1</button>
@@ -157,8 +157,8 @@
 <header id="manual-top" class="cover">
   <div class="eyebrow">CONTROLLED DESIGN DOCUMENT · ITOPS-IAT-STORAGE-ORCH-DOC-0001</div>
   <h1>ITOPS-IaT-Storage-Orchestrator</h1>
-  <h2>Controlled documentation reader for the storage orchestrator and its private control repository model</h2>
-  <p class="lead">Defines the documentation reader, control-console boundary, private control/data repository split, runner registry, job registry, script register, approval evidence, and Python-only implementation rule.</p>
+  <h2>Approval, runtime status, receipts, and split-repository control model</h2>
+  <p class="lead">Adds approval queue, running-now, receipts, failures, dispatcher health, release SHA evidence, and private control repository authority to the controlled reader.</p>
 
   <div class="badges" aria-label="Document status">
     <span class="badge type">CONTROLLED DESIGN DOCUMENT</span>
@@ -183,7 +183,7 @@
 <div><dt>Last review</dt><dd>2026-08-15</dd></div>    <div><dt>Next review</dt><dd>2027-08-15<small>Annual or after material architecture change</small></dd></div>
     <div><dt>Supersedes</dt><dd>Initial public-safe draft</dd></div>
     <div><dt>Records location</dt><dd>Repository-controlled source and generated Pages receipt</dd></div>
-    <div><dt>Source repository</dt><dd><a href="https://example.invalid/ITOPS-IaT-Storage-Orchestrator" target="_blank" rel="noopener">ITOPS-IaT-Storage-Orchestrator</a></dd></div>
+    <div><dt>Source repository</dt><dd><a href="https://github.com/ITOPS-IaT-Storage-Orchestrator" target="_blank" rel="noopener">ITOPS-IaT-Storage-Orchestrator</a></dd></div>
   </dl>
 
   <aside class="callout stop">
@@ -192,86 +192,82 @@
   </aside>
 </header><section id="control-center" class="console-landing" aria-labelledby="control-center-title">
   <div class="section-kicker">Operations console</div>
-  <h2 id="control-center-title">Inventory, Create, View, and Draft Enable/Disable</h2>
-  <p class="section-intro">This landing panel is a public-safe console surface. It displays placeholder inventory, drafts reviewed job JSON, and explains the private control repository boundary. It does not execute work.</p>
+  <h2 id="control-center-title">Inventory, Approvals, Running Now, Receipts, and Draft Enable/Disable</h2>
+  <p class="section-intro">This top panel answers what is enabled, what is pending approval, what is running now, what ran last, what is scheduled next, what failed, and what SHA authorized the current public view.</p>
   <div class="console-tabs" aria-label="Console shortcuts">
     <a class="primary" href="#control-center">Inventory</a>
     <a href="#create-job-draft">Create job draft</a>
-    <a href="#job-inventory">View jobs</a>
-    <a href="#server-inventory">View servers</a>
-    <a href="#enable-disable-draft">Draft enable/disable</a>
+    <a href="#job-inventory">Jobs</a>
+    <a href="#server-inventory">Servers</a>
+    <a href="#enable-disable-draft">Enable/Disable</a>
+    <a href="#approval-queue">Approvals</a>
+    <a href="#running-now">Running now</a>
+    <a href="#receipt-browser">Receipts</a>
+    <a href="#failure-view">Failures</a>
     <a href="#script-register">Scripts</a>
-    <a href="#approval-evidence">Approvals</a>
     <a href="#controlled-document">Document</a>
   </div>
-  <div class="console-grid" id="inventory-summary">
+  <div class="console-grid console-grid-eight">
     <article class="console-card"><span>Servers</span><strong>1</strong><small>placeholder runner</small></article>
-    <article class="console-card"><span>Jobs</span><strong>3</strong><small>disabled examples</small></article>
-    <article class="console-card"><span>Scripts</span><strong>12</strong><small>Python public-safe examples</small></article>
-    <article class="console-card"><span>Execution</span><strong>OFF</strong><small>draft only</small></article>
+    <article class="console-card"><span>Jobs defined</span><strong>3</strong><small>disabled examples</small></article>
+    <article class="console-card"><span>Jobs enabled</span><strong>0</strong><small>private commit required</small></article>
+    <article class="console-card"><span>Running now</span><strong>0</strong><small>execution disabled</small></article>
+    <article class="console-card"><span>Pending approvals</span><strong>1</strong><small>draft example</small></article>
+    <article class="console-card"><span>Failures</span><strong>0</strong><small>none recorded</small></article>
+    <article class="console-card"><span>Dispatcher</span><strong>OFF</strong><small>not deployed</small></article>
+    <article class="console-card"><span>Release</span><strong>Draft</strong><small>no active runner release</small></article>
   </div>
   <aside class="support-boundary-red">
     <strong>Required support boundary</strong>
     <p>If you are not familiar with Python or the Python runtime used by this repository, contact <code>StoragePythonTeam@</code> before editing scripts, builders, dispatchers, validators, or generated publication logic.</p>
     <p>If you are not familiar with Git, GitHub, GitHub Enterprise, or GitOps, contact <code>StorageGitOPSTeam@</code> before editing orchestration, repository-control, schedule, branch, Pages, or release content.</p>
   </aside>
+</section>
 
-  <section id="create-job-draft" aria-labelledby="create-job-draft-title">
-    <h3 id="create-job-draft-title">Create job draft</h3>
-    <p>Generate reviewed JSON for a private control repository commit. This browser control does not write Git and does not execute work.</p>
-    <form class="console-form" onsubmit="return false;">
-      <div class="console-form-grid">
-        <label>Enabled state<select id="consoleEnabled"><option value="false" selected>false</option><option value="true">true</option></select></label>
-        <label>Server<select id="consoleServer"><option>example-runner-01</option><option value="label:role=orchestrator-runner">Any orchestrator runner</option></select></label>
-        <label>Job ID<input id="consoleJobId" value="example-daily-inventory"></label>
-        <label>Schedule type<select id="consoleScheduleType"><option>daily</option><option>interval</option><option>manual</option></select></label>
-        <label>Time / interval<input id="consoleScheduleValue" value="01:10"></label>
-        <label>Timezone<input id="consoleTimezone" value="America/New_York"></label>
-        <label>Mode<select id="consoleMode"><option>observe-only</option><option>publish-only</option><option>manual-approval-required</option></select></label>
-        <label class="console-span-2">Entrypoint<input id="consoleEntrypoint" value="scripts/examples/noop_receipt.py"></label>
-        <label>Timeout seconds<input id="consoleTimeout" value="1800"></label>
-        <label class="console-span-2">Working directory<input id="consoleWorkingDirectory" value="/opt/example-orchestrator"></label>
-        <label>Credential reference<input id="consoleCredential" value="none"></label>
-        <label class="console-span-2">Output path<input id="consoleOutputPath" value="/var/lib/example-orchestrator"></label>
-      </div>
-      <div class="console-tabs">
-        <button class="console-button primary" id="consoleGenerateJob" type="button">Generate job JSON</button>
-        <button class="console-button" id="consoleCopyJob" type="button">Copy JSON</button>
-      </div>
-      <textarea id="consoleJobJson" spellcheck="false" aria-label="Generated job JSON"></textarea>
-    </form>
-  </section>
+<section id="job-inventory" class="console-landing" aria-labelledby="job-inventory-title">
+  <h2 id="job-inventory-title">Job Inventory</h2>
+  <table class="data-table"><thead><tr><th>Job</th><th>Enabled</th><th>Approved</th><th>Running</th><th>Last run</th><th>Next run</th><th>Action</th></tr></thead><tbody>
+    <tr><td><code>example-daily-inventory</code></td><td>No</td><td>No</td><td>No</td><td>Not run</td><td>Disabled</td><td>Draft enable</td></tr>
+    <tr><td><code>example-pages-publication</code></td><td>No</td><td>No</td><td>No</td><td>Not run</td><td>Manual</td><td>Draft enable</td></tr>
+    <tr><td><code>example-manual-review</code></td><td>No</td><td>No</td><td>No</td><td>Not run</td><td>Manual</td><td>Draft enable</td></tr>
+  </tbody></table>
+</section>
 
-  <section id="job-inventory" aria-labelledby="job-inventory-title">
-    <h3 id="job-inventory-title">View jobs</h3>
-    <div class="data-table-wrap" role="region" aria-label="Public-safe job inventory" tabindex="0">
-      <table class="data-table">
-        <thead><tr><th scope="col">Job</th><th scope="col">Target</th><th scope="col">Schedule</th><th scope="col">State</th></tr></thead>
-        <tbody>
-          <tr><td><code>example-daily-inventory</code></td><td>example-runner-01</td><td>daily 01:10 America/New_York</td><td>disabled placeholder</td></tr>
-          <tr><td><code>example-pages-publication</code></td><td>example-runner-01</td><td>manual</td><td>disabled placeholder</td></tr>
-          <tr><td><code>example-manual-review</code></td><td>example-runner-01</td><td>manual</td><td>disabled placeholder</td></tr>
-        </tbody>
-      </table>
+<section id="server-inventory" class="console-landing" aria-labelledby="server-inventory-title">
+  <h2 id="server-inventory-title">Server Inventory</h2>
+  <table class="data-table"><thead><tr><th>Server</th><th>Enabled</th><th>Role</th><th>Timezone</th><th>Allowed groups</th><th>Dispatcher</th></tr></thead><tbody>
+    <tr><td><code>example-runner-01</code></td><td>No</td><td>orchestrator-runner</td><td>America/New_York</td><td>example, catalog, publication</td><td>Not deployed</td></tr>
+  </tbody></table>
+</section>
+
+<section id="create-job-draft" class="console-landing" aria-labelledby="create-job-draft-title">
+  <h2 id="create-job-draft-title">Create Job Draft</h2>
+  <p>This browser form generates JSON for review. It does not write Git and does not execute work.</p>
+  <form class="console-form" onsubmit="return false;">
+    <div class="console-form-grid">
+      <label>Enabled state<select id="draftEnabled"><option value="false" selected>false</option><option value="true">true</option></select></label>
+      <label>Server<select id="draftServer"><option>example-runner-01</option><option value="label:role=orchestrator-runner">Any orchestrator runner</option></select></label>
+      <label>Job ID<input id="draftJobId" value="example-daily-inventory"></label>
+      <label>Schedule type<select id="draftScheduleType"><option>daily</option><option>interval</option><option>manual</option></select></label>
+      <label>Time / interval<input id="draftScheduleValue" value="01:10"></label>
+      <label>Timezone<input id="draftTimezone" value="America/New_York"></label>
+      <label>Mode<select id="draftMode"><option>observe-only</option><option>publish-only</option><option>manual-approval-required</option></select></label>
+      <label class="console-span-2">Entrypoint<input id="draftEntrypoint" value="scripts/examples/noop_receipt.py"></label>
+      <label>Timeout seconds<input id="draftTimeout" value="1800"></label>
+      <label class="console-span-2">Working directory<input id="draftWorkingDirectory" value="/opt/example-orchestrator"></label>
+      <label>Credential reference<input id="draftCredential" value="none"></label>
+      <label class="console-span-2">Output path<input id="draftOutput" value="/var/lib/example-orchestrator"></label>
     </div>
-  </section>
+    <div class="console-tabs"><button class="console-button primary" id="generateJobDraft" type="button">Generate job JSON</button><button class="console-button" id="copyJobDraft" type="button">Copy JSON</button></div>
+    <textarea id="jobDraftOutput" spellcheck="false" aria-label="Generated job JSON"></textarea>
+  </form>
+</section>
 
-  <section id="server-inventory" aria-labelledby="server-inventory-title">
-    <h3 id="server-inventory-title">View servers</h3>
-    <div class="data-table-wrap" role="region" aria-label="Public-safe server inventory" tabindex="0">
-      <table class="data-table">
-        <thead><tr><th scope="col">Server</th><th scope="col">Role</th><th scope="col">Timezone</th><th scope="col">State</th></tr></thead>
-        <tbody>
-          <tr><td><code>example-runner-01</code></td><td>orchestrator-runner</td><td>America/New_York</td><td>disabled placeholder</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section id="enable-disable-draft" aria-labelledby="enable-disable-draft-title">
-    <h3 id="enable-disable-draft-title">Draft enable/disable</h3>
-    <p>The public console can draft an enable/disable change. The private control repository commit is the authority.</p>
-    <pre><code>{
+<section id="enable-disable-draft" class="console-landing" aria-labelledby="enable-disable-draft-title">
+  <h2 id="enable-disable-draft-title">Draft Enable / Disable Change</h2>
+  <p>The browser drafts the requested state. The private control repository commit is the authority.</p>
+  <pre><code>{
+  "schema_version": "1.0",
   "change_type": "job-enabled-state",
   "job_id": "example-daily-inventory",
   "old_enabled": false,
@@ -279,66 +275,92 @@
   "requires_review": true,
   "requires_private_control_repo_commit": true
 }</code></pre>
-  </section>
+</section>
 
-  <section id="script-register" aria-labelledby="script-register-title">
-    <h3 id="script-register-title">Scripts</h3>
-    <p>Public examples are Python-only and non-operational. Real scripts belong in the private control repository and remain disabled until reviewed.</p>
-  </section>
+<section id="approval-queue" class="console-landing" aria-labelledby="approval-queue-title">
+  <h2 id="approval-queue-title">Approval Queue</h2>
+  <table class="data-table"><thead><tr><th>Change</th><th>Job</th><th>Requested state</th><th>Status</th><th>Approver</th><th>SHA</th></tr></thead><tbody>
+    <tr><td>EXAMPLE-APPROVAL-0001</td><td>example-daily-inventory</td><td>Enable</td><td>Draft example</td><td>Required</td><td>Private control commit required</td></tr>
+  </tbody></table>
+</section>
 
-  <section id="approval-evidence" aria-labelledby="approval-evidence-title">
-    <h3 id="approval-evidence-title">Approvals and SHA evidence</h3>
-    <p>Enablement requires a private control-repository commit, reviewer, approver, release SHA, and rollback reference.</p>
-  </section>
+<section id="running-now" class="console-landing" aria-labelledby="running-now-title">
+  <h2 id="running-now-title">Running Now</h2>
+  <table class="data-table"><thead><tr><th>Job</th><th>Server</th><th>Started</th><th>Runtime</th><th>State</th><th>Receipt</th></tr></thead><tbody>
+    <tr><td>None</td><td>—</td><td>—</td><td>—</td><td>Execution disabled / dispatcher not deployed</td><td>—</td></tr>
+  </tbody></table>
+</section>
 
-  <div id="controlled-document" class="visually-hidden" aria-hidden="true">Controlled document begins below.</div>
+<section id="last-runs" class="console-landing" aria-labelledby="last-runs-title">
+  <h2 id="last-runs-title">Last Runs and Next Runs</h2>
+  <table class="data-table"><thead><tr><th>Job</th><th>Last run</th><th>Last result</th><th>Next run</th><th>Reason</th></tr></thead><tbody>
+    <tr><td>example-daily-inventory</td><td>Not run</td><td>Not run</td><td>None</td><td>Disabled</td></tr>
+    <tr><td>example-pages-publication</td><td>Not run</td><td>Not run</td><td>Manual</td><td>Manual example</td></tr>
+  </tbody></table>
+</section>
 
-  <script>
-    (function () {
-      function value(id) { var node = document.getElementById(id); return node ? node.value : ""; }
-      function renderJob() {
-        var server = value("consoleServer");
-        var target = server.indexOf("label:") === 0 ? { label_selector: server.slice(6) } : { server_id: server };
-        var job = {
-          schema_version: "1.0",
-          job_id: value("consoleJobId").trim(),
-          display_name: value("consoleJobId").trim().replace(/-/g, " "),
-          enabled: value("consoleEnabled") === "true",
-          target: target,
-          schedule: {
-            type: value("consoleScheduleType"),
-            value: value("consoleScheduleValue").trim(),
-            timezone: value("consoleTimezone").trim(),
-            missed_run_policy: "skip"
-          },
-          execution: {
-            mode: value("consoleMode"),
-            entrypoint: value("consoleEntrypoint").trim(),
-            arguments: [],
-            working_directory: value("consoleWorkingDirectory").trim(),
-            credential_reference: value("consoleCredential").trim()
-          },
-          outputs: { root: value("consoleOutputPath").trim() },
-          policy: {
-            timeout_seconds: Number(value("consoleTimeout") || 1800),
-            concurrency: "forbid",
-            retry_count: 0
-          }
-        };
-        var output = document.getElementById("consoleJobJson");
-        if (output) output.value = JSON.stringify(job, null, 2);
-      }
-      var generate = document.getElementById("consoleGenerateJob");
-      if (generate) generate.addEventListener("click", renderJob);
-      var copy = document.getElementById("consoleCopyJob");
-      if (copy) copy.addEventListener("click", function () {
-        var output = document.getElementById("consoleJobJson");
-        if (output) { output.select(); document.execCommand("copy"); }
-      });
-      renderJob();
-    }());
-  </script>
-</section><details id="editing-workflow" class="editing-workflow">
+<section id="receipt-browser" class="console-landing" aria-labelledby="receipt-browser-title">
+  <h2 id="receipt-browser-title">Receipt Browser</h2>
+  <table class="data-table"><thead><tr><th>Receipt</th><th>Job</th><th>Result</th><th>Commit SHA</th><th>Started</th><th>Finished</th></tr></thead><tbody>
+    <tr><td>EXAMPLE-RECEIPT-0001</td><td>example-daily-inventory</td><td>not-run</td><td>none</td><td>—</td><td>—</td></tr>
+  </tbody></table>
+</section>
+
+<section id="failure-view" class="console-landing" aria-labelledby="failure-view-title">
+  <h2 id="failure-view-title">Failures</h2>
+  <p>No failed runs are recorded. Current jobs are disabled examples.</p>
+</section>
+
+<section id="script-register" class="console-landing" aria-labelledby="script-register-title">
+  <h2 id="script-register-title">Script Register</h2>
+  <table class="data-table"><thead><tr><th>Script</th><th>Purpose</th><th>State</th></tr></thead><tbody>
+    <tr><td><code>scripts/examples/noop_receipt.py</code></td><td>Emit public-safe example receipt</td><td>Example only</td></tr>
+    <tr><td><code>orchestrator/job_builder.py</code></td><td>Build reviewed job JSON</td><td>Library</td></tr>
+  </tbody></table>
+</section>
+
+<section id="approval-evidence" class="console-landing" aria-labelledby="approval-evidence-title">
+  <h2 id="approval-evidence-title">Approval and SHA Evidence</h2>
+  <table class="data-table"><thead><tr><th>Evidence</th><th>Required value</th></tr></thead><tbody>
+    <tr><td>Docs SHA</td><td>Public reader commit</td></tr>
+    <tr><td>Console template SHA</td><td>Template commit</td></tr>
+    <tr><td>Control SHA</td><td>Private control commit</td></tr>
+    <tr><td>Approver</td><td>Required before enablement</td></tr>
+    <tr><td>Receipt</td><td>Required after execution</td></tr>
+  </tbody></table>
+</section>
+
+<section id="controlled-document" class="console-landing" aria-labelledby="controlled-document-title">
+  <h2 id="controlled-document-title">Controlled Document</h2>
+  <p>The sections below are the SOP-style explanation. The console above is the operator landing surface.</p>
+</section>
+
+<script>
+(function () {
+  function byId(id) { return document.getElementById(id); }
+  function renderJobDraft() {
+    var server = byId('draftServer') ? byId('draftServer').value : 'example-runner-01';
+    var target = server.indexOf('label:') === 0 ? { label_selector: server.slice(6) } : { server_id: server };
+    var job = {
+      schema_version: '1.0',
+      job_id: byId('draftJobId').value.trim(),
+      display_name: byId('draftJobId').value.trim().replace(/-/g, ' '),
+      enabled: byId('draftEnabled').value === 'true',
+      target: target,
+      schedule: { type: byId('draftScheduleType').value, value: byId('draftScheduleValue').value.trim(), timezone: byId('draftTimezone').value.trim(), missed_run_policy: 'skip' },
+      execution: { mode: byId('draftMode').value, entrypoint: byId('draftEntrypoint').value.trim(), arguments: [], working_directory: byId('draftWorkingDirectory').value.trim(), credential_reference: byId('draftCredential').value.trim() },
+      outputs: { root: byId('draftOutput').value.trim() },
+      policy: { timeout_seconds: Number(byId('draftTimeout').value || 1800), concurrency: 'forbid', retry_count: 0 }
+    };
+    byId('jobDraftOutput').value = JSON.stringify(job, null, 2);
+  }
+  var generate = byId('generateJobDraft');
+  var copy = byId('copyJobDraft');
+  if (generate) generate.addEventListener('click', renderJobDraft);
+  if (copy) copy.addEventListener('click', function () { var out = byId('jobDraftOutput'); out.select(); document.execCommand('copy'); });
+  if (byId('jobDraftOutput')) renderJobDraft();
+}());
+</script><details id="editing-workflow" class="editing-workflow">
   <summary>How this controlled document is created and edited</summary>
   <div class="editing-workflow-body">
     <p><strong>The canonical repository supplies the Python engine, document contract, and reader theme. Every SOP, IOP, MOP, runbook, standard, design, plan, training package, catalog, or other controlled artifact is created as its own private repository and edited in that repository.</strong> The Pages site is the controlled reading surface; content changes occur through the repository so authorship, review, approval, and history remain attributable.</p>
@@ -394,8 +416,8 @@
 
   <aside class="metric-note">
     <strong>What the percentage means</strong>
-    <p>Public placeholder. Contribution metrics require a controlled history measurement run.</p>
-    <p><strong>Baseline:</strong> after initial commit · 7b54576cd809 · none</p>
+    <p>Public placeholder.</p>
+    <p><strong>Baseline:</strong> after initial commit · 57b7eb9bfc54 · none</p>
     <p><strong>Work Ledger rule:</strong> Repository activity evidence is not, by itself, a quality or performance rating.</p>
   </aside>
 
@@ -429,12 +451,12 @@
             <td><time datetime="2026-08-15">2026-08-15</time></td>
             <td>Document Steward</td>
             <td>
-              <span class="cell-label">Reviewed</span> Template build and public-surface validation<br>
+              <span class="cell-label">Reviewed</span> Template build, public audit, and Pages validation<br>
               <span class="cell-label">Approved</span> Not approved for operational execution
             </td>
-            <td>Initial template-based split-repository design: public docs reader, operations-console template, and private Orchestrator control/data repository.</td>
+            <td>Added approval queue, running-now status, receipt browser, failures, dispatcher health, and release SHA evidence.</td>
             <td>
-template:ddd1f84b8e33 previous:7b54576cd809            </td>
+docs:57b7eb9bfc54 ops:2c507b266bab control:c088d8cf7e30            </td>
           </tr>
       </tbody>
     </table>
@@ -485,178 +507,150 @@ template:ddd1f84b8e33 previous:7b54576cd809            </td>
   </div>
 </section>
       <article id="manualContent" class="manual-content">
-        <h2 id="1-control-center-first" class="document-heading level-2">1. Control Center First</h2>
-<p class="lead">The public documentation reader opens with the control-console concept: inventory, create job draft, view jobs, view servers, draft enable/disable, scripts, approvals, receipts, and then the long-form controlled document.</p>
+        <h2 id="1-what-the-console-adds" class="document-heading level-2">1. What the Console Adds</h2>
+<p class="lead">The top of this reader now includes the missing operator views: approval queue, running-now status, last runs, next runs, receipt browser, failure view, dispatcher health, and SHA evidence.</p>
 <aside class="callout control">
-<strong>Split-repository rule</strong>
-<p>The documentation repository publishes a controlled reader and public-safe draft tools. The private control repository owns the real server registry, job registry, script inventory, approvals, releases, receipts, and enable/disable state.</p>
+<strong>Public-safe rule</strong>
+<p>The browser can generate drafts and show redacted status. The private control repository is the authority for real enable/disable state, approvals, releases, and receipts.</p>
 </aside>
-<h2 id="2-why-the-split-exists" class="document-heading level-2">2. Why the Split Exists</h2>
-<p>Operational sprawl happens when scripts, local timers, manual launch patterns, receipts, and small utility jobs grow across different servers without one reviewed source of truth. The resulting questions are basic but difficult to answer:</p>
+<h2 id="2-approval-model" class="document-heading level-2">2. Approval Model</h2>
+<p>An approval is not a note. It is a structured object in the private control repository. A real enablement must identify the job, requested state, approver, approval reference, approved commit SHA, and effective state.</p>
+<pre><code class="language-json">{
+  &quot;schema_version&quot;: &quot;1.0&quot;,
+  &quot;approval_id&quot;: &quot;APPROVAL-EXAMPLE-0001&quot;,
+  &quot;change_type&quot;: &quot;job-enabled-state&quot;,
+  &quot;job_id&quot;: &quot;example-daily-inventory&quot;,
+  &quot;requested_enabled_state&quot;: true,
+  &quot;approval_status&quot;: &quot;draft-example&quot;,
+  &quot;requires_private_control_repo_commit&quot;: true
+}
+</code></pre>
+<h2 id="3-runtime-state-model" class="document-heading level-2">3. Runtime State Model</h2>
+<p>Runtime state answers what is running now, what ran last, what is scheduled next, and what failed. In the current setup execution is disabled, so the running-now table is intentionally empty.</p>
 <table>
 <thead>
 <tr>
-  <th>Question</th>
-  <th>Required source of truth</th>
+  <th>Runtime view</th>
+  <th>Source path in private control repo</th>
+  <th>Public result now</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>Which server owns the job?</td>
-  <td>Private server registry</td>
+  <td>Dispatcher health</td>
+  <td><code>status/dispatcher.json</code></td>
+  <td>Not deployed</td>
 </tr>
 <tr>
-  <td>When should it run?</td>
-  <td>Private job schedule</td>
+  <td>Running now</td>
+  <td><code>status/running.json</code></td>
+  <td>0 jobs</td>
 </tr>
 <tr>
-  <td>What script is allowed?</td>
-  <td>Private script register</td>
+  <td>Last runs</td>
+  <td><code>status/last-runs.json</code></td>
+  <td>Not run / execution disabled</td>
 </tr>
 <tr>
-  <td>Who approved it?</td>
-  <td>Private approval record</td>
+  <td>Next runs</td>
+  <td><code>status/next-runs.json</code></td>
+  <td>None while disabled</td>
 </tr>
 <tr>
-  <td>What SHA authorized it?</td>
-  <td>Private release record</td>
+  <td>Failures</td>
+  <td><code>status/failures.json</code></td>
+  <td>0 failures</td>
 </tr>
 <tr>
-  <td>Did it run?</td>
-  <td>Receipt and status record</td>
+  <td>Receipts</td>
+  <td><code>receipts/</code></td>
+  <td>Example receipt only</td>
 </tr>
 </tbody>
 </table>
-<h2 id="3-repository-responsibilities" class="document-heading level-2">3. Repository Responsibilities</h2>
+<h2 id="4-receipt-model" class="document-heading level-2">4. Receipt Model</h2>
+<p>A receipt proves what happened. Every future execution should record job id, server id, scheduled slot, actual start, finish, result, active control commit, active script hash, and output hash.</p>
+<h2 id="5-repository-split" class="document-heading level-2">5. Repository Split</h2>
 <table>
 <thead>
 <tr>
-  <th>Repository</th>
-  <th>Purpose</th>
-  <th>Public or private</th>
+  <th>Repo</th>
+  <th>Role</th>
+  <th>Holds</th>
 </tr>
 </thead>
 <tbody>
 <tr>
   <td><code>ITOPS-IaT-Storage-Orchestrator</code></td>
-  <td>Controlled documentation reader, public-safe console explanation, synthetic examples, and draft JSON generator.</td>
-  <td>Public-safe</td>
+  <td>Controlled reader / SOP-style public-safe docs</td>
+  <td>Explanation, redacted status, draft tools</td>
 </tr>
 <tr>
   <td><code>ITOPS-IaT-Operations-Console-Template</code></td>
-  <td>Reusable operations-console template for inventory, create, view, enable/disable draft, scripts, approvals, and receipts.</td>
-  <td>Public-safe template</td>
+  <td>Reusable operator console template</td>
+  <td>Inventory, create, view, approval, receipt UI pattern</td>
 </tr>
 <tr>
   <td><code>ITOPS-IaT-Storage-Orchestrator-Control</code></td>
-  <td>Real desired state: servers, jobs, scripts, schedules, approvals, receipts, release records, and sanitized exports.</td>
-  <td>Private</td>
+  <td>Private desired-state authority</td>
+  <td>Real servers, jobs, scripts, approvals, releases, receipts, status</td>
 </tr>
 </tbody>
 </table>
-<h2 id="4-operations-console-pattern" class="document-heading level-2">4. Operations Console Pattern</h2>
-<p>The operations console template must put the active work surface at the top:</p>
-<ol>
-<li>Inventory.</li>
-<li>Create job draft.</li>
-<li>View jobs.</li>
-<li>View servers.</li>
-<li>Draft enable/disable.</li>
-<li>Scripts.</li>
-<li>Approvals.</li>
-<li>Receipts.</li>
-<li>Controlled document.</li>
-</ol>
-<p>The console can generate change JSON. It must not directly execute server-side work from a browser.</p>
-<h2 id="5-enable-and-disable-boundary" class="document-heading level-2">5. Enable and Disable Boundary</h2>
-<p>A visible enable/disable control is useful only as a draft generator. The real control is a reviewed private-repository commit.</p>
-<pre><code class="language-json">{
-  &quot;change_type&quot;: &quot;job-enabled-state&quot;,
-  &quot;job_id&quot;: &quot;example-daily-inventory&quot;,
-  &quot;old_enabled&quot;: false,
-  &quot;new_enabled&quot;: true,
-  &quot;requires_review&quot;: true,
-  &quot;requires_private_control_repo_commit&quot;: true
-}
-</code></pre>
-<h2 id="6-private-control-repository-layout" class="document-heading level-2">6. Private Control Repository Layout</h2>
-<pre><code class="language-text">servers/
-jobs/
-scripts/
-orchestrator/
-schemas/
-approvals/
-releases/
-receipts/
-exports/public/
-</code></pre>
-<p>The future dispatcher reads the private control repository, not the public Pages site.</p>
-<h2 id="7-python-only-implementation-rule" class="document-heading level-2">7. Python-Only Implementation Rule</h2>
+<h2 id="6-python-and-gitops-support-boundary" class="document-heading level-2">6. Python and GitOps Support Boundary</h2>
 <aside class="support-boundary-red">
 <strong>Required support boundary</strong>
 <p>If you are not familiar with Python or the Python runtime used by this repository, contact <code>StoragePythonTeam@</code> before editing scripts, builders, dispatchers, validators, or generated publication logic.</p>
 <p>If you are not familiar with Git, GitHub, GitHub Enterprise, or GitOps, contact <code>StorageGitOPSTeam@</code> before editing orchestration, repository-control, schedule, branch, Pages, or release content.</p>
 </aside>
-<p>PowerShell is not the implementation language for this repository pattern. Operational logic is Python-first.</p>
-<h2 id="8-ansible-relationship" class="document-heading level-2">8. Ansible Relationship</h2>
-<p>This is not an Ansible-based system. The foundation is Git-governed orchestration: server records, job records, schedules, policy, validation, dispatch, and receipts.</p>
-<p>Ansible can become one optional executor lane later, especially for idempotent configuration tasks. It is not the control plane.</p>
-<h2 id="9-approval-and-sha-evidence" class="document-heading level-2">9. Approval and SHA Evidence</h2>
-<p>Every material change should identify:</p>
+<h2 id="7-current-operating-state" class="document-heading level-2">7. Current Operating State</h2>
 <table>
 <thead>
 <tr>
-  <th>Evidence</th>
-  <th>Required value</th>
+  <th>Control</th>
+  <th>Current value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>Documentation source SHA</td>
-  <td>Commit in the public docs repository</td>
+  <td>Execution enabled</td>
+  <td>No</td>
 </tr>
 <tr>
-  <td>Console template SHA</td>
-  <td>Commit in the operations-console template repository</td>
+  <td>Dispatcher installed</td>
+  <td>No</td>
 </tr>
 <tr>
-  <td>Control source SHA</td>
-  <td>Commit in the private control repository</td>
+  <td>Server mutation</td>
+  <td>No</td>
 </tr>
 <tr>
-  <td>Approver</td>
-  <td>Person or role approving the change</td>
+  <td>Jobs enabled</td>
+  <td>0</td>
 </tr>
 <tr>
-  <td>Approval record</td>
-  <td>Pull request, issue, ticket, or controlled record</td>
+  <td>Running now</td>
+  <td>0</td>
 </tr>
 <tr>
-  <td>Effective state</td>
-  <td>Enabled or disabled</td>
+  <td>Approval queue</td>
+  <td>Draft example only</td>
 </tr>
 <tr>
-  <td>Rollback</td>
-  <td>Prior known-good SHA and restoration method</td>
+  <td>Receipts</td>
+  <td>Example not-run receipt only</td>
 </tr>
 </tbody>
 </table>
-<h2 id="10-next-implementation-gates" class="document-heading level-2">10. Next Implementation Gates</h2>
-<ul>
-<li>Build and publish the documentation reader.</li>
-<li>Create the operations-console template.</li>
-<li>Create the private Orchestrator control repository from the console template.</li>
-<li>Keep example jobs disabled.</li>
-<li>Add real private server and job data only to the private control repository.</li>
-<li>Add sanitized exports from the private repo to the public docs reader only after review.</li>
-</ul>
+<h2 id="8-next-implementation-step" class="document-heading level-2">8. Next Implementation Step</h2>
+<p>The next implementation step is private only: replace placeholders in the private control repository with real server and job records, keep all jobs disabled, and require approval records before any future runner reads the repo.</p>
 
       </article>
 
       <footer>
         <p>Copyright (c) 2026 Matthew S. Novak. All Rights Reserved.</p>
         <p>ITOPS-IAT-STORAGE-ORCH-DOC-0001 · v0.01 · 2210Docs 0.08.2</p>
-        <p>Contribution evidence 7b54576cd809 · generated 2026-08-15T17:25:51.618927+00:00</p>
+        <p>Contribution evidence 57b7eb9bfc54 · generated 2026-08-15T18:25:08.343601+00:00</p>
       </footer>
     </main>
   </div>
